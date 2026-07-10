@@ -39,4 +39,34 @@ document.addEventListener('DOMContentLoaded', () => {
             navbar.style.padding = '15px 0';
         }
     });
+
+    // Booking Form Handler
+    const bookingForm = document.getElementById('booking-form');
+    const bookingSuccess = document.getElementById('booking-success');
+    
+    if (bookingForm && bookingSuccess) {
+        bookingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form values
+            const nameInput = document.getElementById('name').value;
+            const serviceInput = document.getElementById('service').value;
+            const phoneInput = document.getElementById('phone').value;
+            
+            // Populate success message details
+            document.getElementById('success-name').textContent = nameInput;
+            document.getElementById('success-service').textContent = serviceInput;
+            document.getElementById('success-phone').textContent = phoneInput;
+            
+            // Hide form and show success
+            bookingForm.style.display = 'none';
+            bookingSuccess.style.display = 'block';
+            
+            // Refresh Lucide icons in the success message
+            lucide.createIcons();
+            
+            // Scroll to the book section header smoothly
+            document.getElementById('book').scrollIntoView({ behavior: 'smooth' });
+        });
+    }
 });
