@@ -48,25 +48,57 @@ document.addEventListener('DOMContentLoaded', () => {
         bookingForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
-            // Get form values
-            const nameInput = document.getElementById('name').value;
-            const serviceInput = document.getElementById('service').value;
-            const phoneInput = document.getElementById('phone').value;
+            const submitButton = bookingForm.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.textContent;
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending...';
+
+            const formData = new FormData(bookingForm);
             
-            // Populate success message details
-            document.getElementById('success-name').textContent = nameInput;
-            document.getElementById('success-service').textContent = serviceInput;
-            document.getElementById('success-phone').textContent = phoneInput;
-            
-            // Hide form and show success
-            bookingForm.style.display = 'none';
-            bookingSuccess.style.display = 'block';
-            
-            // Refresh Lucide icons in the success message
-            lucide.createIcons();
-            
-            // Scroll to the book section header smoothly
-            document.getElementById('book').scrollIntoView({ behavior: 'smooth' });
+            fetch('https://formspree.io/f/mkoldpdk', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Populate success message details
+                    const nameInput = document.getElementById('name').value;
+                    const serviceInput = document.getElementById('service').value;
+                    const phoneInput = document.getElementById('phone').value;
+                    
+                    document.getElementById('success-name').textContent = nameInput;
+                    document.getElementById('success-service').textContent = serviceInput;
+                    document.getElementById('success-phone').textContent = phoneInput;
+                    
+                    // Hide form and show success
+                    bookingForm.style.display = 'none';
+                    bookingSuccess.style.display = 'block';
+                    
+                    // Refresh Lucide icons
+                    lucide.createIcons();
+                    
+                    // Scroll to the book section header smoothly
+                    document.getElementById('book').scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    response.json().then(data => {
+                        if (Object.hasOwn(data, 'errors')) {
+                            alert(data["errors"].map(error => error["message"]).join(", "));
+                        } else {
+                            alert("Oops! There was a problem submitting your form. Please try again.");
+                        }
+                    });
+                }
+            })
+            .catch(error => {
+                alert("Oops! There was a problem submitting your form. Please check your connection and try again.");
+            })
+            .finally(() => {
+                submitButton.disabled = false;
+                submitButton.textContent = originalButtonText;
+            });
         });
     }
 });
