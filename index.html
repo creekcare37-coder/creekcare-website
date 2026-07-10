@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CreekCare | Reliable & Affordable Lawn & Home Services</title>
+    <meta name="description" content="Looking for affordable lawn mowing, gutter cleaning, and garage cleanouts? Our hardworking student team provides reliable service in Findlay Creek and Blossom Park Ottawa.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">Creek<span>Care</span></a>
+            <nav class="nav-links">
+                <a href="#services">Services</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="tel:343-204-7869" class="phone-link">
+                    <i data-lucide="phone"></i>
+                    343-204-7869
+                </a>
+                <a href="#book" class="btn btn-primary">Book Now</a>
+            </div>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay">
+        <nav class="mobile-nav">
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <a href="#book" class="btn btn-primary">Book Now</a>
+        </nav>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg">
+            <img src="assets/hero.jpg" alt="Beautifully manicured lawn" />
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="container hero-content">
+            <span class="badge">Trusted local student team</span>
+            <h1>Reliable. Affordable. Done.</h1>
+            <p>Professional lawn and home services by your trusted local student team in Findlay Creek and Blossom Park Ottawa.</p>
+            <div class="hero-buttons">
+                <a href="#services" class="btn btn-primary btn-large">Our Services</a>
+                <a href="tel:343-204-7869" class="btn btn-secondary btn-large">Call 343-204-7869</a>
+            </div>
+            
+            <div class="trust-indicators">
+                <div class="trust-item">
+                    <i data-lucide="check-circle"></i>
+                    <span>Affordable Pricing</span>
+                </div>
+                <div class="trust-item">
+                    <i data-lucide="clock"></i>
+                    <span>Reliable Service</span>
+                </div>
+                <div class="trust-item">
+                    <i data-lucide="map-pin"></i>
+                    <span>Local to Ottawa</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About / Trust Section -->
+    <section class="about-section" id="about">
+        <div class="container about-container">
+            <div class="about-text">
+                <h2>Your Neighborhood Team</h2>
+                <p>We are a hardworking student team dedicated to providing reliable and affordable services near you. We take pride in helping our community keep their homes looking their best without breaking the bank.</p>
+                <div class="service-areas">
+                    <strong>Proudly Serving:</strong> Findlay Creek & Blossom Park
+                </div>
+            </div>
+            <div class="about-stats">
+                <div class="stat-box">
+                    <h3>100%</h3>
+                    <p>Satisfaction Goal</p>
+                </div>
+                <div class="stat-box">
+                    <h3>Local</h3>
+                    <p>Student Run</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Services</h2>
+                <p>Affordable, reliable lawn and home care tailored for you.</p>
+            </div>
+            
+            <div class="services-grid">
+                <!-- Lawn Care -->
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="assets/lawn.jpg" alt="Lawn Care Service" />
+                        <div class="service-icon"><i data-lucide="leaf"></i></div>
+                    </div>
+                    <div class="service-content">
+                        <h3>Lawn Care</h3>
+                        <p>Mowing, weed pulling, and trimming to keep your yard neat and healthy all season long.</p>
+                        <a href="#book" class="btn btn-outline">Book Service</a>
+                    </div>
+                </div>
+
+                <!-- Garage Cleanouts -->
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="assets/garage.jpg" alt="Garage Cleanout Service" />
+                        <div class="service-icon"><i data-lucide="box"></i></div>
+                    </div>
+                    <div class="service-content">
+                        <h3>Garage Cleanouts</h3>
+                        <p>Clearing clutter to make your garage organized and spacious. Reclaim your space today.</p>
+                        <a href="#book" class="btn btn-outline">Book Service</a>
+                    </div>
+                </div>
+                
+                <!-- Gutter Cleaning -->
+                <div class="service-card">
+                    <div class="service-img placeholder-bg">
+                         <!-- Fallback icon or gradient if no image -->
+                        <div class="service-icon"><i data-lucide="droplets"></i></div>
+                    </div>
+                    <div class="service-content">
+                        <h3>Gutter Cleaning & Inspection</h3>
+                        <p>Keep your gutters flowing freely. Ask about a free inspection with a garage cleanout or lawn maintenance!</p>
+                        <a href="#book" class="btn btn-outline">Book Service</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="cta-section" id="book">
+        <div class="container cta-container">
+            <h2>Ready to transform your home?</h2>
+            <p>Get in touch today for quick assistance and reliable service.</p>
+            <div class="contact-options">
+                <a href="tel:343-204-7869" class="contact-card">
+                    <div class="icon-circle"><i data-lucide="phone"></i></div>
+                    <h4>Call or Text</h4>
+                    <span>343-204-7869</span>
+                </a>
+                <a href="mailto:creekcare37@gmail.com" class="contact-card">
+                    <div class="icon-circle"><i data-lucide="mail"></i></div>
+                    <h4>Email Us</h4>
+                    <span>creekcare37@gmail.com</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <a href="#" class="logo">Creek<span>Care</span></a>
+                <p>Reliable. Affordable. Done.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-legal">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Terms and Conditions</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 CreekCare. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+    <script src="main.js"></script>
+</body>
+</html>
