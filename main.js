@@ -99,6 +99,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 submitButton.disabled = false;
                 submitButton.textContent = originalButtonText;
             });
-        });
     }
+
+    // FAQ Accordion Handler
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', () => {
+            const item = question.parentElement;
+            
+            // Toggle active class on this item
+            item.classList.toggle('active');
+            
+            // Close other items
+            const otherItems = document.querySelectorAll('.faq-item');
+            otherItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                }
+            });
+        });
+    });
 });
