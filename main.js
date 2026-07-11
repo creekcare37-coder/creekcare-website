@@ -101,23 +101,17 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
-    // FAQ Accordion Handler
-    const faqQuestions = document.querySelectorAll('.faq-question');
-    
-    faqQuestions.forEach(question => {
-        question.addEventListener('click', () => {
-            const item = question.parentElement;
-            
-            // Toggle active class on this item
-            item.classList.toggle('active');
-            
-            // Close other items
-            const otherItems = document.querySelectorAll('.faq-item');
-            otherItems.forEach(otherItem => {
-                if (otherItem !== item) {
-                    otherItem.classList.remove('active');
-                }
-            });
+    // FAQ Accordion Handler (closes other items when one is opened)
+    const faqItems = document.querySelectorAll('details.faq-item');
+    faqItems.forEach(item => {
+        item.addEventListener('toggle', () => {
+            if (item.open) {
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.removeAttribute('open');
+                    }
+                });
+            }
         });
     });
 });

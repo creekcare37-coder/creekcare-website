@@ -724,7 +724,7 @@ select.form-control {
     border-color: rgba(46, 204, 113, 0.2);
 }
 
-.faq-question {
+summary.faq-question {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -739,9 +739,15 @@ select.form-control {
     text-align: left;
     cursor: pointer;
     transition: var(--transition);
+    list-style: none;
+    outline: none;
 }
 
-.faq-question i {
+summary.faq-question::-webkit-details-marker {
+    display: none;
+}
+
+summary.faq-question i {
     width: 20px;
     height: 20px;
     color: var(--primary);
@@ -749,30 +755,22 @@ select.form-control {
 }
 
 .faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
-    padding: 0 30px;
+    padding: 0 30px 22px;
 }
 
 .faq-answer p {
-    padding-bottom: 22px;
     color: var(--text-light);
     font-size: 1rem;
     margin-bottom: 0;
 }
 
 /* Active FAQ Item Styles */
-.faq-item.active {
+details[open] {
     background-color: var(--bg-white);
     border-color: rgba(46, 204, 113, 0.3);
+    box-shadow: var(--shadow-sm);
 }
 
-.faq-item.active .faq-answer {
-    max-height: 500px; /* Large enough to fit the content */
-    transition: max-height 0.3s cubic-bezier(0.95, 0.05, 0.795, 0.035);
-}
-
-.faq-item.active .faq-question i {
+details[open] summary.faq-question i {
     transform: rotate(45deg); /* Plus turns into an X */
 }
