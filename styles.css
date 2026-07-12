@@ -1151,6 +1151,27 @@ details[open] summary.faq-question i {
     color: var(--secondary);
 }
 
+.estimator-sub-panel .form-control {
+    background-color: var(--bg-white);
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    color: var(--secondary);
+}
+
+.estimator-sub-panel .form-control:focus {
+    border-color: var(--primary);
+    background-color: var(--bg-white);
+}
+
+.estimator-sub-panel select.form-control {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%231e293b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    color: var(--secondary);
+}
+
+.estimator-sub-panel .form-control option {
+    background-color: var(--bg-white);
+    color: var(--secondary);
+}
+
 .selector-pills {
     display: flex;
     gap: 10px;
