@@ -181,6 +181,7 @@ function calculateEstimate() {
 
         detailsContainer.innerHTML = '';
         let total = 0;
+        let hasQuote = false;
         
         if (activeServices.size === 0) {
             detailsContainer.innerHTML = '<p class="empty-msg">Select a service to calculate your estimate.</p>';
@@ -219,34 +220,98 @@ function calculateEstimate() {
                 detailText = `${binCount} Bins sanitized`;
             } else if (service === 'garage-cleanouts') {
                 serviceName = 'Garage Cleanout';
+                serviceCost = 'Quote Needed';
                 const volumeEl = document.getElementById('garage-volume');
                 const volume = volumeEl ? volumeEl.value : 'small';
-                if (volume === 'small') {
-                    serviceCost = 120;
-                    detailText = 'Small / Light Volume';
-                } else if (volume === 'medium') {
-                    serviceCost = 220;
-                    detailText = 'Medium / Half-Load';
-                } else {
-                    serviceCost = 370;
-                    detailText = 'Large / Full-Load';
-                }
+                const volLabel = volume === 'small' ? 'Small Volume' : volume === 'medium' ? 'Medium Volume' : 'Large Volume';
+                detailText = `${volLabel} (In-person quote needed)`;
             } else if (service === 'gutter-inspection') {
                 serviceName = 'Gutter Inspection';
                 serviceCost = 35;
                 detailText = 'Camera Pole Inspection & Video validation';
+            } else if (service === 'spring-cleanup') {
+                serviceName = 'Spring Clean Up';
+                const yardSizeEl = document.getElementById('spring-cleanup-size');
+                const yardSize = yardSizeEl ? yardSizeEl.value : 'small';
+                if (yardSize === 'small') {
+                    serviceCost = 150;
+                    detailText = 'Small Yard (Dethatch & Clean)';
+                } else if (yardSize === 'medium') {
+                    serviceCost = 250;
+                    detailText = 'Medium Yard (Dethatch & Clean)';
+                } else {
+                    serviceCost = 350;
+                    detailText = 'Large Yard (Dethatch & Clean)';
+                }
+            } else if (service === 'fall-cleanup') {
+                serviceName = 'Fall Clean Up';
+                const yardSizeEl = document.getElementById('fall-cleanup-size');
+                const yardSize = yardSizeEl ? yardSizeEl.value : 'small';
+                if (yardSize === 'small') {
+                    serviceCost = 130;
+                    detailText = 'Small Yard (Leaves & Winter Prep)';
+                } else if (yardSize === 'medium') {
+                    serviceCost = 220;
+                    detailText = 'Medium Yard (Leaves & Winter Prep)';
+                } else {
+                    serviceCost = 310;
+                    detailText = 'Large Yard (Leaves & Winter Prep)';
+                }
             }
 
-            total += serviceCost;
+            if (typeof serviceCost === 'number') {
+                total += serviceCost;
+            } else {
+                hasQuote = true;
+            }
 
-            const itemEl = document.createElement('p');
-            itemEl.innerHTML = `<span><strong>${serviceName}</strong><br><small style="color: #cbd5e1; font-size: 0.85rem;">${detailText}</small></span> <span>$${serviceCost}</span>`;
+            const itemEl = document.createElement('div');
+            itemEl.className = 'summary-item';
+            itemEl.style.display = 'flex';
+            itemEl.style.justifyContent = 'space-between';
+            itemEl.style.alignItems = 'center';
+            itemEl.style.marginBottom = '12px';
+            
+            const costText = typeof serviceCost === 'number' ? `$${serviceCost}` : serviceCost;
+            itemEl.innerHTML = `
+                <span>
+                    <strong>${serviceName}</strong><br>
+                    <small style="color: #cbd5e1; font-size: 0.85rem;">${detailText}</small>
+                </span>
+                <span style="display: flex; align-items: center; gap: 8px; font-weight: 600;">
+                    ${costText}
+                    <button class="remove-item-btn" onclick="removeEstimatorService('${service}')" style="background: none; border: none; color: #ff6b6b; cursor: pointer; font-size: 1.2rem; padding: 0 4px; line-height: 1; margin-left: 2px;" title="Remove service">&times;</button>
+                </span>
+            `;
             detailsContainer.appendChild(itemEl);
         });
 
-        totalSpan.textContent = `$${total}`;
+        if (hasQuote) {
+            totalSpan.textContent = total > 0 ? `$${total} + Quote` : 'Quote Needed';
+        } else {
+            totalSpan.textContent = `$${total}`;
+        }
     } catch (e) {
         console.error("Calculate estimate error:", e);
+    }
+}
+
+function removeEstimatorService(service) {
+    try {
+        const optionCard = document.querySelector(`.estimator-option[data-service="${service}"]`);
+        if (optionCard) {
+            optionCard.classList.remove('active');
+        }
+        
+        const panel = document.getElementById(`panel-${service}`);
+        if (panel) {
+            panel.style.display = 'none';
+        }
+        
+        activeServices.delete(service);
+        calculateEstimate();
+    } catch (e) {
+        console.error("Remove service error:", e);
     }
 }
 
@@ -270,6 +335,8 @@ function applyEstimateToBooking() {
             else if (singleService === 'gutter-cleaning') bookingSelect.value = 'Gutter Cleaning';
             else if (singleService === 'bin-cleaning') bookingSelect.value = 'Bin Cleaning';
             else if (singleService === 'gutter-inspection') bookingSelect.value = 'Gutter Inspection';
+            else if (singleService === 'spring-cleanup') bookingSelect.value = 'Spring Clean Up';
+            else if (singleService === 'fall-cleanup') bookingSelect.value = 'Fall Clean Up';
         } else {
             bookingSelect.value = 'Multiple Services';
         }
@@ -277,6 +344,7 @@ function applyEstimateToBooking() {
         // Generate details text
         let detailsMsg = 'Calculated Estimate Summary:\n';
         let total = 0;
+        let hasQuote = false;
 
         activeServices.forEach(service => {
             if (service === 'lawn-care') {
@@ -300,16 +368,32 @@ function applyEstimateToBooking() {
             } else if (service === 'garage-cleanouts') {
                 const volumeEl = document.getElementById('garage-volume');
                 const volume = volumeEl ? volumeEl.value : 'small';
-                const cost = volume === 'small' ? 120 : volume === 'medium' ? 220 : 370;
-                detailsMsg += `- Garage Cleanout (${volume.charAt(0).toUpperCase() + volume.slice(1)}): $${cost}\n`;
-                total += cost;
+                const volLabel = volume === 'small' ? 'Small Volume' : volume === 'medium' ? 'Medium Volume' : 'Large Volume';
+                detailsMsg += `- Garage Cleanout (${volLabel}): In-person quote needed\n`;
+                hasQuote = true;
             } else if (service === 'gutter-inspection') {
                 detailsMsg += '- Gutter Inspection (Camera Pole): $35\n';
                 total += 35;
+            } else if (service === 'spring-cleanup') {
+                const yardSizeEl = document.getElementById('spring-cleanup-size');
+                const yardSize = yardSizeEl ? yardSizeEl.value : 'small';
+                const cost = yardSize === 'small' ? 150 : yardSize === 'medium' ? 250 : 350;
+                detailsMsg += `- Spring Clean Up (${yardSize.charAt(0).toUpperCase() + yardSize.slice(1)} Yard): $${cost}\n`;
+                total += cost;
+            } else if (service === 'fall-cleanup') {
+                const yardSizeEl = document.getElementById('fall-cleanup-size');
+                const yardSize = yardSizeEl ? yardSizeEl.value : 'small';
+                const cost = yardSize === 'small' ? 130 : yardSize === 'medium' ? 220 : 310;
+                detailsMsg += `- Fall Clean Up (${yardSize.charAt(0).toUpperCase() + yardSize.slice(1)} Yard): $${cost}\n`;
+                total += cost;
             }
         });
         
-        detailsMsg += `Estimated Total: $${total}\n\n[Please enter any additional request notes here...]`;
+        if (hasQuote) {
+            detailsMsg += `Estimated Total: $${total} + Quote Required\n\n[Please enter any additional request notes here...]`;
+        } else {
+            detailsMsg += `Estimated Total: $${total}\n\n[Please enter any additional request notes here...]`;
+        }
         messageTextarea.value = detailsMsg;
 
         // Scroll to booking form
@@ -374,3 +458,4 @@ window.updateBinCount = updateBinCount;
 window.calculateEstimate = calculateEstimate;
 window.applyEstimateToBooking = applyEstimateToBooking;
 window.setLawnFrequency = setLawnFrequency;
+window.removeEstimatorService = removeEstimatorService;
