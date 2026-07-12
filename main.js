@@ -196,7 +196,7 @@ function calculateEstimate() {
             if (service === 'lawn-care') {
                 serviceName = 'Lawn Mowing';
                 serviceCost = lawnFrequency === 'weekly' ? 60 : 75;
-                detailText = lawnFrequency === 'weekly' ? 'Weekly Schedule ($60/cut)' : 'Bi-Weekly Schedule ($75/cut)';
+                detailText = lawnFrequency === 'weekly' ? 'Weekly (Starting at $60/cut)' : 'Bi-Weekly (Starting at $75/cut)';
             } else if (service === 'gutter-cleaning') {
                 serviceName = 'Gutter Cleaning';
                 const houseTypeEl = document.getElementById('gutter-house-type');
@@ -282,7 +282,7 @@ function applyEstimateToBooking() {
             if (service === 'lawn-care') {
                 const cost = lawnFrequency === 'weekly' ? 60 : 75;
                 const freqLabel = lawnFrequency === 'weekly' ? 'Weekly' : 'Bi-Weekly';
-                detailsMsg += `- Lawn Mowing (${freqLabel}): $${cost}/cut\n`;
+                detailsMsg += `- Lawn Mowing (${freqLabel}): Starting at $${cost}/cut\n`;
                 total += cost;
             } else if (service === 'gutter-cleaning') {
                 const houseTypeEl = document.getElementById('gutter-house-type');
