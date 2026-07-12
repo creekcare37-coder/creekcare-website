@@ -109,6 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 submitButton.disabled = false;
                 submitButton.textContent = originalButtonText;
             });
+        });
     }
 
     // FAQ Accordion Handler (closes other items when one is opened)
