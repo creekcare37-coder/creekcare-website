@@ -1,0 +1,16 @@
+# Allow all search engines and AI agents to crawl CreekCare
+User-agent: *
+Allow: /
+
+# Specifically allow AI search bots to gather information for ChatGPT, Gemini, and Claude
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
