@@ -1,0 +1,163 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1920" width="100%" height="100%">
+    <defs>
+        <!-- Background Gradient -->
+        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#0f172a" /> <!-- Dark slate slate-900 -->
+            <stop offset="50%" stop-color="#1e293b" /> <!-- Slate-800 -->
+            <stop offset="100%" stop-color="#14532d" /> <!-- Dark Forest Green green-900 -->
+        </linearGradient>
+        
+        <!-- Button Gradient -->
+        <linearGradient id="btnGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#22c55e" /> <!-- Green-500 -->
+            <stop offset="100%" stop-color="#10b981" /> <!-- Emerald-500 -->
+        </linearGradient>
+
+        <linearGradient id="accentGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#4ade80" stop-opacity="0.15" />
+            <stop offset="100%" stop-color="#22c55e" stop-opacity="0" />
+        </linearGradient>
+
+        <!-- Drop Shadows -->
+        <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+            <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.3" />
+        </filter>
+        <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="8" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+        </filter>
+    </defs>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&amp;display=swap');
+        
+        .font-sans {
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        .title-sub {
+            font-size: 48px;
+            font-weight: 600;
+            fill: #4ade80;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+        }
+        
+        .title-main {
+            font-size: 96px;
+            font-weight: 800;
+            fill: #ffffff;
+            letter-spacing: 2px;
+        }
+        
+        .logo-text {
+            font-size: 64px;
+            font-weight: 800;
+            fill: #ffffff;
+            letter-spacing: 1px;
+        }
+        
+        .logo-accent {
+            fill: #22c55e;
+        }
+        
+        .tagline {
+            font-size: 36px;
+            font-weight: 400;
+            fill: #cbd5e1;
+            letter-spacing: 1px;
+        }
+
+        .service-tag {
+            font-size: 32px;
+            font-weight: 600;
+            fill: #e2e8f0;
+            letter-spacing: 1px;
+        }
+        
+        .domain-text {
+            font-size: 54px;
+            font-weight: 800;
+            fill: #ffffff;
+            letter-spacing: 1px;
+        }
+    </style>
+
+    <!-- Background -->
+    <rect width="1080" height="1920" fill="url(#bgGrad)" />
+
+    <!-- Decorative Top Wave Pattern -->
+    <path d="M0,0 L1080,0 L1080,300 C900,400 700,200 450,350 C200,500 100,380 0,450 Z" fill="url(#accentGrad)" />
+
+    <!-- Decorative Bottom Circles/Blobs -->
+    <circle cx="950" cy="1800" r="350" fill="#22c55e" opacity="0.06" filter="url(#glow)" />
+    <circle cx="100" cy="1600" r="250" fill="#10b981" opacity="0.04" filter="url(#glow)" />
+
+    <!-- Scaled Central Content Container (Shrunk to 60% to fit perfectly with safety margins) -->
+    <g transform="translate(216, 384) scale(0.6)">
+        
+        <!-- Logo -->
+        <g transform="translate(540, 100)" text-anchor="middle" filter="url(#shadow)">
+            <!-- Leaf Logo Icon -->
+            <path d="M-40,-50 C-10,-50 10,-30 10,0 C10,30 -10,40 -40,40 C-40,40 -40,10 -40,-50 Z" fill="#22c55e" transform="translate(0, -30) scale(0.6)" stroke-width="0" />
+            <path d="M40,-50 C10,-50 -10,-30 -10,0 C-10,30 10,40 40,40 C40,40 40,10 40,-50 Z" fill="#4ade80" transform="translate(0, -30) scale(0.6) rotate(180)" stroke-width="0" />
+            
+            <text y="70" class="font-sans logo-text">Creek<tspan class="logo-accent">Care</tspan></text>
+            <text y="125" class="font-sans tagline">RELIABLE • AFFORDABLE • LOCAL</text>
+        </g>
+
+        <!-- Big Announcement -->
+        <g transform="translate(540, 480)" text-anchor="middle" filter="url(#shadow)">
+            <text class="font-sans title-sub">We Launched Our</text>
+            <text y="110" class="font-sans title-main">NEW WEBSITE!</text>
+        </g>
+
+        <!-- Phone Mockup / Website Preview Frame -->
+        <g transform="translate(190, 680)" filter="url(#shadow)">
+            <!-- Outer Phone Bezel -->
+            <rect x="0" y="0" width="700" height="420" rx="40" fill="#0f172a" stroke="#334155" stroke-width="8" />
+            <!-- Inner Screen Mockup -->
+            <rect x="15" y="15" width="670" height="390" rx="28" fill="#1e293b" />
+            
+            <!-- Browser Header -->
+            <rect x="15" y="15" width="670" height="60" rx="0" fill="#0f172a" />
+            <circle cx="50" cy="45" r="10" fill="#ef4444" />
+            <circle cx="80" cy="45" r="10" fill="#eab308" />
+            <circle cx="110" cy="45" r="10" fill="#22c55e" />
+            
+            <rect x="150" y="30" width="450" height="30" rx="8" fill="#1e293b" />
+            <text x="375" y="50" class="font-sans" font-size="18" fill="#94a3b8" text-anchor="middle">creekcare.ca</text>
+            
+            <!-- Mock Content -->
+            <!-- Welcome text -->
+            <text x="350" y="160" class="font-sans" font-size="36" font-weight="800" fill="#ffffff" text-anchor="middle">Reliable. Affordable. Done.</text>
+            <text x="350" y="210" class="font-sans" font-size="22" fill="#94a3b8" text-anchor="middle">Lawn care &amp; home services by local students.</text>
+            
+            <!-- Quick Features -->
+            <rect x="70" y="260" width="260" height="100" rx="15" fill="#10b981" fill-opacity="0.1" stroke="#10b981" stroke-width="2" />
+            <text x="200" y="300" class="font-sans" font-size="20" font-weight="600" fill="#4ade80" text-anchor="middle">Price Estimator</text>
+            <text x="200" y="330" class="font-sans" font-size="14" fill="#94a3b8" text-anchor="middle">Calculate Instant Rates</text>
+
+            <rect x="370" y="260" width="260" height="100" rx="15" fill="#3b82f6" fill-opacity="0.1" stroke="#3b82f6" stroke-width="2" />
+            <text x="500" y="300" class="font-sans" font-size="20" font-weight="600" fill="#60a5fa" text-anchor="middle">Easy Booking</text>
+            <text x="500" y="330" class="font-sans" font-size="14" fill="#94a3b8" text-anchor="middle">Book in Under 60 Secs</text>
+        </g>
+
+        <!-- Call to Action button link -->
+        <g transform="translate(540, 1220)" text-anchor="middle" filter="url(#shadow)">
+            <!-- Pill Button background -->
+            <rect x="-350" y="0" width="700" height="130" rx="65" fill="url(#btnGrad)" />
+            <!-- Text -->
+            <text y="80" class="font-sans domain-text">VISIT CREEKCARE.CA</text>
+            <!-- Subtitle helper -->
+            <text y="180" class="font-sans" font-size="28" fill="#94a3b8" font-weight="600" letter-spacing="4px" text-transform="uppercase">TAP LINK IN BIO</text>
+        </g>
+
+        <!-- Services list -->
+        <g transform="translate(540, 1500)" text-anchor="middle" opacity="0.9">
+            <text class="font-sans service-tag">Lawn Mowing  •  Gutter Cleaning  •  Bin Cleaning</text>
+            <text y="50" class="font-sans service-tag">Garage Cleanouts  •  Spring &amp; Fall Cleanups</text>
+        </g>
+
+    </g>
+</svg>
