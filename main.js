@@ -130,194 +130,226 @@ document.addEventListener('DOMContentLoaded', () => {
 // Estimator State
 const activeServices = new Set();
 
-window.toggleEstimatorOption = function(el) {
-    const service = el.getAttribute('data-service');
-    el.classList.toggle('active');
-    
-    const panel = document.getElementById(`panel-${service}`);
-    if (el.classList.contains('active')) {
-        activeServices.add(service);
-        if (panel) panel.style.display = 'block';
-    } else {
-        activeServices.delete(service);
-        if (panel) panel.style.display = 'none';
+function toggleEstimatorOption(el) {
+    try {
+        const service = el.getAttribute('data-service');
+        el.classList.toggle('active');
+        
+        const panel = document.getElementById(`panel-${service}`);
+        if (el.classList.contains('active')) {
+            activeServices.add(service);
+            if (panel) panel.style.display = 'block';
+        } else {
+            activeServices.delete(service);
+            if (panel) panel.style.display = 'none';
+        }
+        calculateEstimate();
+    } catch (e) {
+        console.error("Estimator error:", e);
     }
-    window.calculateEstimate();
-};
+}
 
-window.updateBinCount = function(val) {
-    const valSpan = document.getElementById('bin-count-val');
-    if (valSpan) valSpan.textContent = val;
-    window.calculateEstimate();
-};
-
-window.calculateEstimate = function() {
-    const detailsContainer = document.getElementById('summary-details');
-    const totalSpan = document.getElementById('calc-total');
-    if (!detailsContainer || !totalSpan) return;
-
-    detailsContainer.innerHTML = '';
-    let total = 0;
-    
-    if (activeServices.size === 0) {
-        detailsContainer.innerHTML = '<p class="empty-msg">Select a service to calculate your estimate.</p>';
-        totalSpan.textContent = '$0';
-        return;
+function updateBinCount(val) {
+    try {
+        const valSpan = document.getElementById('bin-count-val');
+        if (valSpan) valSpan.textContent = val;
+        calculateEstimate();
+    } catch (e) {
+        console.error("Bin update error:", e);
     }
+}
 
-    activeServices.forEach(service => {
-        let serviceName = '';
-        let serviceCost = 0;
-        let detailText = '';
+function calculateEstimate() {
+    try {
+        const detailsContainer = document.getElementById('summary-details');
+        const totalSpan = document.getElementById('calc-total');
+        if (!detailsContainer || !totalSpan) return;
 
-        if (service === 'lawn-care') {
-            serviceName = 'Lawn Mowing';
-            serviceCost = 60;
-            detailText = 'Weekly Schedule ($60/cut)';
-        } else if (service === 'gutter-cleaning') {
-            serviceName = 'Gutter Cleaning';
-            const houseType = document.getElementById('gutter-house-type').value;
-            if (houseType === 'townhouse') {
-                serviceCost = 100;
-                detailText = 'Townhouse Base Rate';
-            } else if (houseType === 'semi') {
-                serviceCost = 140;
-                detailText = 'Semi-Detached Base Rate';
-            } else {
-                serviceCost = 180;
-                detailText = 'Detached House Base Rate';
-            }
-        } else if (service === 'bin-cleaning') {
-            serviceName = 'Bin Cleaning';
-            const binCount = parseInt(document.getElementById('bin-count').value) || 2;
-            serviceCost = 20 + (binCount - 1) * 10;
-            detailText = `${binCount} Bins sanitized`;
-        } else if (service === 'garage-cleanouts') {
-            serviceName = 'Garage Cleanout';
-            const volume = document.getElementById('garage-volume').value;
-            if (volume === 'small') {
-                serviceCost = 120;
-                detailText = 'Small / Light Volume';
-            } else if (volume === 'medium') {
-                serviceCost = 220;
-                detailText = 'Medium / Half-Load';
-            } else {
-                serviceCost = 370;
-                detailText = 'Large / Full-Load';
-            }
-        } else if (service === 'gutter-inspection') {
-            serviceName = 'Gutter Inspection';
-            serviceCost = 35;
-            detailText = 'Camera Pole Inspection & Video validation';
+        detailsContainer.innerHTML = '';
+        let total = 0;
+        
+        if (activeServices.size === 0) {
+            detailsContainer.innerHTML = '<p class="empty-msg">Select a service to calculate your estimate.</p>';
+            totalSpan.textContent = '$0';
+            return;
         }
 
-        total += serviceCost;
+        activeServices.forEach(service => {
+            let serviceName = '';
+            let serviceCost = 0;
+            let detailText = '';
 
-        const itemEl = document.createElement('p');
-        itemEl.innerHTML = `<span><strong>${serviceName}</strong><br><small style="color: #cbd5e1; font-size: 0.85rem;">${detailText}</small></span> <span>$${serviceCost}</span>`;
-        detailsContainer.appendChild(itemEl);
-    });
+            if (service === 'lawn-care') {
+                serviceName = 'Lawn Mowing';
+                serviceCost = 60;
+                detailText = 'Weekly Schedule ($60/cut)';
+            } else if (service === 'gutter-cleaning') {
+                serviceName = 'Gutter Cleaning';
+                const houseTypeEl = document.getElementById('gutter-house-type');
+                const houseType = houseTypeEl ? houseTypeEl.value : 'townhouse';
+                if (houseType === 'townhouse') {
+                    serviceCost = 100;
+                    detailText = 'Townhouse Base Rate';
+                } else if (houseType === 'semi') {
+                    serviceCost = 140;
+                    detailText = 'Semi-Detached Base Rate';
+                } else {
+                    serviceCost = 180;
+                    detailText = 'Detached House Base Rate';
+                }
+            } else if (service === 'bin-cleaning') {
+                serviceName = 'Bin Cleaning';
+                const binCountEl = document.getElementById('bin-count');
+                const binCount = binCountEl ? parseInt(binCountEl.value) : 2;
+                serviceCost = 20 + (binCount - 1) * 10;
+                detailText = `${binCount} Bins sanitized`;
+            } else if (service === 'garage-cleanouts') {
+                serviceName = 'Garage Cleanout';
+                const volumeEl = document.getElementById('garage-volume');
+                const volume = volumeEl ? volumeEl.value : 'small';
+                if (volume === 'small') {
+                    serviceCost = 120;
+                    detailText = 'Small / Light Volume';
+                } else if (volume === 'medium') {
+                    serviceCost = 220;
+                    detailText = 'Medium / Half-Load';
+                } else {
+                    serviceCost = 370;
+                    detailText = 'Large / Full-Load';
+                }
+            } else if (service === 'gutter-inspection') {
+                serviceName = 'Gutter Inspection';
+                serviceCost = 35;
+                detailText = 'Camera Pole Inspection & Video validation';
+            }
 
-    totalSpan.textContent = `$${total}`;
-};
+            total += serviceCost;
 
-window.applyEstimateToBooking = function() {
-    if (activeServices.size === 0) {
-        alert('Please select at least one service to calculate an estimate.');
-        return;
+            const itemEl = document.createElement('p');
+            itemEl.innerHTML = `<span><strong>${serviceName}</strong><br><small style="color: #cbd5e1; font-size: 0.85rem;">${detailText}</small></span> <span>$${serviceCost}</span>`;
+            detailsContainer.appendChild(itemEl);
+        });
+
+        totalSpan.textContent = `$${total}`;
+    } catch (e) {
+        console.error("Calculate estimate error:", e);
     }
+}
 
-    const bookingSelect = document.getElementById('service');
-    const messageTextarea = document.getElementById('message');
-    
-    if (!bookingSelect || !messageTextarea) return;
-
-    // Determine dropdown select value
-    if (activeServices.size === 1) {
-        const singleService = Array.from(activeServices)[0];
-        if (singleService === 'lawn-care') bookingSelect.value = 'Lawn Care';
-        else if (singleService === 'garage-cleanouts') bookingSelect.value = 'Garage Cleanouts';
-        else if (singleService === 'gutter-cleaning') bookingSelect.value = 'Gutter Cleaning';
-        else if (singleService === 'bin-cleaning') bookingSelect.value = 'Bin Cleaning';
-        else if (singleService === 'gutter-inspection') bookingSelect.value = 'Gutter Inspection';
-    } else {
-        bookingSelect.value = 'Multiple Services';
-    }
-
-    // Generate details text
-    let detailsMsg = 'Calculated Estimate Summary:\n';
-    let total = 0;
-
-    activeServices.forEach(service => {
-        if (service === 'lawn-care') {
-            detailsMsg += '- Lawn Mowing (Weekly): $60/cut\n';
-            total += 60;
-        } else if (service === 'gutter-cleaning') {
-            const houseType = document.getElementById('gutter-house-type').value;
-            const cost = houseType === 'townhouse' ? 100 : houseType === 'semi' ? 140 : 180;
-            detailsMsg += `- Gutter Cleaning (${houseType.charAt(0).toUpperCase() + houseType.slice(1)}): $${cost}\n`;
-            total += cost;
-        } else if (service === 'bin-cleaning') {
-            const binCount = parseInt(document.getElementById('bin-count').value) || 2;
-            const cost = 20 + (binCount - 1) * 10;
-            detailsMsg += `- Bin Cleaning (${binCount} bins): $${cost}\n`;
-            total += cost;
-        } else if (service === 'garage-cleanouts') {
-            const volume = document.getElementById('garage-volume').value;
-            const cost = volume === 'small' ? 120 : volume === 'medium' ? 220 : 370;
-            detailsMsg += `- Garage Cleanout (${volume.charAt(0).toUpperCase() + volume.slice(1)}): $${cost}\n`;
-            total += cost;
-        } else if (service === 'gutter-inspection') {
-            detailsMsg += '- Gutter Inspection (Camera Pole): $35\n';
-            total += 35;
+function applyEstimateToBooking() {
+    try {
+        if (activeServices.size === 0) {
+            alert('Please select at least one service to calculate an estimate.');
+            return;
         }
-    });
-    
-    detailsMsg += `Estimated Total: $${total}\n\n[Please enter any additional request notes here...]`;
-    messageTextarea.value = detailsMsg;
 
-    // Scroll to booking form
-    document.getElementById('book').scrollIntoView({ behavior: 'smooth' });
-};
+        const bookingSelect = document.getElementById('service');
+        const messageTextarea = document.getElementById('message');
+        
+        if (!bookingSelect || !messageTextarea) return;
+
+        // Determine dropdown select value
+        if (activeServices.size === 1) {
+            const singleService = Array.from(activeServices)[0];
+            if (singleService === 'lawn-care') bookingSelect.value = 'Lawn Care';
+            else if (singleService === 'garage-cleanouts') bookingSelect.value = 'Garage Cleanouts';
+            else if (singleService === 'gutter-cleaning') bookingSelect.value = 'Gutter Cleaning';
+            else if (singleService === 'bin-cleaning') bookingSelect.value = 'Bin Cleaning';
+            else if (singleService === 'gutter-inspection') bookingSelect.value = 'Gutter Inspection';
+        } else {
+            bookingSelect.value = 'Multiple Services';
+        }
+
+        // Generate details text
+        let detailsMsg = 'Calculated Estimate Summary:\n';
+        let total = 0;
+
+        activeServices.forEach(service => {
+            if (service === 'lawn-care') {
+                detailsMsg += '- Lawn Mowing (Weekly): $60/cut\n';
+                total += 60;
+            } else if (service === 'gutter-cleaning') {
+                const houseTypeEl = document.getElementById('gutter-house-type');
+                const houseType = houseTypeEl ? houseTypeEl.value : 'townhouse';
+                const cost = houseType === 'townhouse' ? 100 : houseType === 'semi' ? 140 : 180;
+                detailsMsg += `- Gutter Cleaning (${houseType.charAt(0).toUpperCase() + houseType.slice(1)}): $${cost}\n`;
+                total += cost;
+            } else if (service === 'bin-cleaning') {
+                const binCountEl = document.getElementById('bin-count');
+                const binCount = binCountEl ? parseInt(binCountEl.value) : 2;
+                const cost = 20 + (binCount - 1) * 10;
+                detailsMsg += `- Bin Cleaning (${binCount} bins): $${cost}\n`;
+                total += cost;
+            } else if (service === 'garage-cleanouts') {
+                const volumeEl = document.getElementById('garage-volume');
+                const volume = volumeEl ? volumeEl.value : 'small';
+                const cost = volume === 'small' ? 120 : volume === 'medium' ? 220 : 370;
+                detailsMsg += `- Garage Cleanout (${volume.charAt(0).toUpperCase() + volume.slice(1)}): $${cost}\n`;
+                total += cost;
+            } else if (service === 'gutter-inspection') {
+                detailsMsg += '- Gutter Inspection (Camera Pole): $35\n';
+                total += 35;
+            }
+        });
+        
+        detailsMsg += `Estimated Total: $${total}\n\n[Please enter any additional request notes here...]`;
+        messageTextarea.value = detailsMsg;
+
+        // Scroll to booking form
+        document.getElementById('book').scrollIntoView({ behavior: 'smooth' });
+    } catch (e) {
+        console.error("Apply estimate error:", e);
+    }
+}
 
 // Service Map Initialization (Leaflet.js)
 window.addEventListener('load', function() {
-    const mapContainer = document.getElementById('service-map');
-    if (mapContainer && window.L) {
-        // Center on Findlay Creek / Blossom Park area (Ottawa coordinates)
-        const map = L.map('service-map', {
-            center: [45.3316, -75.6225],
-            zoom: 12,
-            scrollWheelZoom: false
-        });
+    try {
+        const mapContainer = document.getElementById('service-map');
+        if (mapContainer && window.L) {
+            // Center on Findlay Creek / Blossom Park area (Ottawa coordinates)
+            const map = L.map('service-map', {
+                center: [45.3316, -75.6225],
+                zoom: 12,
+                scrollWheelZoom: false
+            });
 
-        // Use standard OpenStreetMap tiles
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-            maxZoom: 19
-        }).addTo(map);
+            // Use standard OpenStreetMap tiles
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                maxZoom: 19
+            }).addTo(map);
 
-        // Findlay Creek Service Zone
-        const findlayCreek = L.circle([45.3129, -75.6022], {
-            color: '#2ecc71',
-            fillColor: '#2ecc71',
-            fillOpacity: 0.15,
-            radius: 2000 // 2 km
-        }).addTo(map);
-        findlayCreek.bindPopup('<strong>Findlay Creek Service Zone</strong><br>Weekly cuts, gutters, bins, and cleanouts.');
+            // Findlay Creek Service Zone
+            const findlayCreek = L.circle([45.3129, -75.6022], {
+                color: '#2ecc71',
+                fillColor: '#2ecc71',
+                fillOpacity: 0.15,
+                radius: 2000 // 2 km
+            }).addTo(map);
+            findlayCreek.bindPopup('<strong>Findlay Creek Service Zone</strong><br>Weekly cuts, gutters, bins, and cleanouts.');
 
-        // Blossom Park Service Zone
-        const blossomPark = L.circle([45.3503, -75.6429], {
-            color: '#27ae60',
-            fillColor: '#27ae60',
-            fillOpacity: 0.15,
-            radius: 2000 // 2 km
-        }).addTo(map);
-        blossomPark.bindPopup('<strong>Blossom Park Service Zone</strong><br>Weekly cuts, gutters, bins, and cleanouts.');
-        
-        // Force Leaflet map resize layout fix
-        setTimeout(function() {
-            map.invalidateSize();
-        }, 100);
+            // Blossom Park Service Zone
+            const blossomPark = L.circle([45.3503, -75.6429], {
+                color: '#27ae60',
+                fillColor: '#27ae60',
+                fillOpacity: 0.15,
+                radius: 2000 // 2 km
+            }).addTo(map);
+            blossomPark.bindPopup('<strong>Blossom Park Service Zone</strong><br>Weekly cuts, gutters, bins, and cleanouts.');
+            
+            // Force Leaflet map resize layout fix
+            setTimeout(function() {
+                map.invalidateSize();
+            }, 100);
+        }
+    } catch (e) {
+        console.error("Map initialization error:", e);
     }
 });
+
+// Explicit window binding mappings as redundant safety layers
+window.toggleEstimatorOption = toggleEstimatorOption;
+window.updateBinCount = updateBinCount;
+window.calculateEstimate = calculateEstimate;
+window.applyEstimateToBooking = applyEstimateToBooking;
