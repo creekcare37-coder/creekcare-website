@@ -983,3 +983,357 @@ details[open] summary.faq-question i {
         display: none !important;
     }
 }
+
+/* Trust Badges Styles */
+.badges-section {
+    padding: 60px 0;
+    background-color: var(--bg-light);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.badges-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+}
+
+.badge-card {
+    background-color: var(--bg-white);
+    padding: 30px 20px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+    transition: var(--transition);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.badge-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(46, 204, 113, 0.2);
+}
+
+.badge-icon {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(46, 204, 113, 0.1);
+    color: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px;
+}
+
+.badge-icon i {
+    width: 28px;
+    height: 28px;
+}
+
+.badge-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: var(--secondary);
+}
+
+.badge-card p {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    line-height: 1.5;
+    margin-bottom: 0;
+}
+
+/* Price Estimator Styles */
+.pricing-section {
+    padding: 100px 0;
+    background-color: var(--bg-light);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.estimator-container {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr;
+    gap: 40px;
+    align-items: start;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.estimator-calculator {
+    background-color: var(--bg-white);
+    padding: 40px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.estimator-group {
+    margin-bottom: 30px;
+}
+
+.estimator-group label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    color: var(--secondary);
+}
+
+.estimator-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+}
+
+.estimator-option {
+    border: 2px solid rgba(0, 0, 0, 0.08);
+    border-radius: var(--radius-md);
+    padding: 20px 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    background-color: var(--bg-white);
+}
+
+.estimator-option:hover {
+    border-color: var(--primary);
+    background-color: rgba(46, 204, 113, 0.02);
+}
+
+.estimator-option.active {
+    border-color: var(--primary);
+    background-color: rgba(46, 204, 113, 0.05);
+    box-shadow: 0 0 10px rgba(46, 204, 113, 0.1);
+}
+
+.option-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.option-header i {
+    color: var(--primary);
+    width: 24px;
+    height: 24px;
+}
+
+.option-header span {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--secondary);
+}
+
+.option-price {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    font-weight: 600;
+}
+
+.estimator-sub-panel {
+    display: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    padding-top: 25px;
+    margin-top: 25px;
+    animation: fadeIn 0.3s ease;
+}
+
+.estimator-sub-panel h4 {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    color: var(--secondary);
+}
+
+.selector-pills {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.pill {
+    padding: 8px 16px;
+    border-radius: var(--radius-md);
+    background-color: var(--bg-light);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.pill.active {
+    background-color: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 8px;
+    border-radius: 5px;
+    background: #e2e8f0;
+    outline: none;
+    margin: 15px 0;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--primary);
+    cursor: pointer;
+    transition: background .15s ease-in-out;
+}
+
+.slider::-webkit-slider-thumb:hover {
+    background: var(--primary-dark);
+}
+
+/* Estimator Summary Styles */
+.estimator-summary {
+    background-color: var(--secondary);
+    color: white;
+    padding: 40px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    position: sticky;
+    top: 100px;
+}
+
+.estimator-summary h3 {
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 15px;
+}
+
+.summary-details {
+    margin-bottom: 25px;
+    min-height: 100px;
+}
+
+.summary-details p {
+    color: #e2e8f0;
+    font-size: 1rem;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.summary-details p.empty-msg {
+    justify-content: center;
+    color: #a0aec0;
+    font-style: italic;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.summary-total {
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+}
+
+.summary-total span {
+    font-size: 1.1rem;
+    color: #e2e8f0;
+}
+
+.summary-total .total-price {
+    font-size: 2rem;
+    color: var(--primary);
+}
+
+/* Service Area Map Styles */
+.map-section {
+    padding: 100px 0;
+    background-color: var(--bg-white);
+}
+
+.map-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: var(--bg-white);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+#service-map {
+    width: 100%;
+    height: 450px;
+    z-index: 1;
+}
+
+.map-legend {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px;
+    background-color: var(--bg-light);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--secondary);
+}
+
+.legend-circle {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border-width: 2px;
+    border-style: solid;
+    display: inline-block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 992px) {
+    .estimator-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .estimator-summary {
+        position: static;
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .estimator-calculator {
+        padding: 25px;
+    }
+    
+    .estimator-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    #service-map {
+        height: 300px;
+    }
+}

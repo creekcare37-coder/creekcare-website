@@ -25,6 +25,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <!-- Leaflet CSS for Service Area Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     
@@ -157,6 +159,7 @@
             <a href="#" class="logo">Creek<span>Care</span></a>
             <nav class="nav-links">
                 <a href="#services">Services</a>
+                <a href="#pricing">Pricing</a>
                 <a href="about.html">About</a>
                 <a href="#book">Contact</a>
             </nav>
@@ -177,6 +180,7 @@
     <div class="mobile-menu-overlay">
         <nav class="mobile-nav">
             <a href="#services">Services</a>
+            <a href="#pricing">Pricing</a>
             <a href="about.html">About</a>
             <a href="#book">Contact</a>
             <a href="tel:343-204-7869" class="phone-link" style="margin-top: 10px;">
@@ -215,6 +219,32 @@
                     <i data-lucide="map-pin"></i>
                     <span>Local to Ottawa</span>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Badges Row -->
+    <section class="badges-section">
+        <div class="container badges-grid">
+            <div class="badge-card">
+                <div class="badge-icon"><i data-lucide="graduation-cap"></i></div>
+                <h3>100% Student-Run</h3>
+                <p>Supporting local student work ethic, energy, and community focus.</p>
+            </div>
+            <div class="badge-card">
+                <div class="badge-icon"><i data-lucide="map-pin"></i></div>
+                <h3>Findlay Creek Local</h3>
+                <p>We live and operate right here in your neighborhood.</p>
+            </div>
+            <div class="badge-card">
+                <div class="badge-icon"><i data-lucide="shield-check"></i></div>
+                <h3>Satisfaction Guaranteed</h3>
+                <p>We aren't finished with the job until you are completely satisfied.</p>
+            </div>
+            <div class="badge-card">
+                <div class="badge-icon"><i data-lucide="credit-card"></i></div>
+                <h3>e-Transfer & Cash</h3>
+                <p>Convenient, secure payment options straight after the service.</p>
             </div>
         </div>
     </section>
@@ -380,6 +410,114 @@
         </div>
     </section>
 
+    <!-- Price Estimator Section -->
+    <section class="pricing-section" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>Price Estimator & Calculator</h2>
+                <p>Calculate a quick, transparent estimate of our student home services. No obligations, no hidden fees!</p>
+            </div>
+            
+            <div class="estimator-container">
+                <div class="estimator-calculator">
+                    <div class="estimator-group">
+                        <label>Select Your Service(s):</label>
+                        <div class="estimator-grid">
+                            <div class="estimator-option" data-service="lawn-care" onclick="toggleEstimatorOption(this)">
+                                <div class="option-header">
+                                    <i data-lucide="leaf"></i>
+                                    <span>Lawn Mowing</span>
+                                </div>
+                                <span class="option-price">$60 / cut</span>
+                            </div>
+                            <div class="estimator-option" data-service="gutter-cleaning" onclick="toggleEstimatorOption(this)">
+                                <div class="option-header">
+                                    <i data-lucide="droplets"></i>
+                                    <span>Gutter Cleaning</span>
+                                </div>
+                                <span class="option-price">Starting at $100</span>
+                            </div>
+                            <div class="estimator-option" data-service="bin-cleaning" onclick="toggleEstimatorOption(this)">
+                                <div class="option-header">
+                                    <i data-lucide="trash-2"></i>
+                                    <span>Bin Cleaning</span>
+                                </div>
+                                <span class="option-price">Starting at $20</span>
+                            </div>
+                            <div class="estimator-option" data-service="garage-cleanouts" onclick="toggleEstimatorOption(this)">
+                                <div class="option-header">
+                                    <i data-lucide="box"></i>
+                                    <span>Garage Cleanout</span>
+                                </div>
+                                <span class="option-price">Starting at $100</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lawn Care Sub-options -->
+                    <div class="estimator-sub-panel" id="panel-lawn-care">
+                        <h4>Lawn Mowing Configuration</h4>
+                        <div class="form-group">
+                            <label>Mowing Frequency:</label>
+                            <div class="selector-pills">
+                                <span class="pill active">Weekly ($60/cut)</span>
+                            </div>
+                            <p class="help-text">Note: We only offer weekly service during peak summer months to maintain lawn health.</p>
+                        </div>
+                    </div>
+
+                    <!-- Gutter Cleaning Sub-options -->
+                    <div class="estimator-sub-panel" id="panel-gutter-cleaning">
+                        <h4>Gutter Cleaning Configuration</h4>
+                        <div class="form-group">
+                            <label>House Type:</label>
+                            <select id="gutter-house-type" class="form-control" onchange="calculateEstimate()">
+                                <option value="townhouse" selected>Townhouse ($100)</option>
+                                <option value="semi">Semi-Detached ($140)</option>
+                                <option value="detached">Detached / Single ($180)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Bin Cleaning Sub-options -->
+                    <div class="estimator-sub-panel" id="panel-bin-cleaning">
+                        <h4>Bin Cleaning Configuration</h4>
+                        <div class="form-group">
+                            <label>Number of Bins: <span id="bin-count-val">2</span></label>
+                            <input type="range" id="bin-count" min="1" max="5" value="2" class="slider" oninput="updateBinCount(this.value)">
+                            <p class="help-text">($20 for the first bin, +$10 for each additional bin)</p>
+                        </div>
+                    </div>
+
+                    <!-- Garage Cleanouts Sub-options -->
+                    <div class="estimator-sub-panel" id="panel-garage-cleanouts">
+                        <h4>Garage Cleanout Size</h4>
+                        <div class="form-group">
+                            <label>Estimated Junk Volume:</label>
+                            <select id="garage-volume" class="form-control" onchange="calculateEstimate()">
+                                <option value="small" selected>Small / Light Sorting ($100)</option>
+                                <option value="medium">Medium / Half-Load ($200)</option>
+                                <option value="large">Large / Full-Load ($350)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="estimator-summary">
+                    <h3>Estimate Summary</h3>
+                    <div class="summary-details" id="summary-details">
+                        <p class="empty-msg">Select a service to calculate your estimate.</p>
+                    </div>
+                    <div class="summary-total">
+                        <span>Estimated Total:</span>
+                        <span class="total-price" id="calc-total">$0</span>
+                    </div>
+                    <button class="btn btn-primary btn-large" style="width: 100%; margin-top: 20px;" onclick="applyEstimateToBooking()">Apply to Booking Form &darr;</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Call to Action Section -->
     <section class="cta-section" id="book">
         <div class="container">
@@ -450,6 +588,29 @@
         </div>
     </section>
 
+    <!-- Service Area Map Section -->
+    <section class="map-section" id="service-area">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Service Area</h2>
+                <p>We proudly serve the Findlay Creek and Blossom Park communities in Ottawa. Check the map below to see if your home is in our radius!</p>
+            </div>
+            <div class="map-wrapper">
+                <div id="service-map"></div>
+                <div class="map-legend">
+                    <div class="legend-item">
+                        <span class="legend-circle" style="background-color: rgba(46, 204, 113, 0.4); border-color: rgb(46, 204, 113);"></span>
+                        <span>Findlay Creek Service Area</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-circle" style="background-color: rgba(39, 174, 96, 0.4); border-color: rgb(39, 174, 96);"></span>
+                        <span>Blossom Park Service Area</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="container footer-container">
@@ -483,6 +644,8 @@
         // Initialize Lucide icons
         lucide.createIcons();
     </script>
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script src="main.js"></script>
 </body>
 </html>
