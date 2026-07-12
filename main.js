@@ -325,10 +325,13 @@ window.addEventListener('load', function() {
         const mapContainer = document.getElementById('service-map');
         if (mapContainer && window.L) {
             // Center on Findlay Creek / Blossom Park area (Ottawa coordinates)
+            const isMobileDevice = L.Browser.mobile || ('ontouchstart' in window);
             const map = L.map('service-map', {
                 center: [45.3316, -75.6225],
                 zoom: 12,
-                scrollWheelZoom: false
+                scrollWheelZoom: false,
+                dragging: !isMobileDevice,
+                tap: !isMobileDevice
             });
 
             // Use standard OpenStreetMap tiles

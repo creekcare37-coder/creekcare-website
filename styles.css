@@ -1375,3 +1375,31 @@ details[open] summary.faq-question i {
         height: 300px;
     }
 }
+
+@media (max-width: 480px) {
+    .estimator-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .selector-pills {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .pill {
+        text-align: center;
+    }
+    
+    .pricing-section, 
+    .services-section, 
+    .map-section, 
+    .booking-section, 
+    .subpage-content {
+        padding: 40px 0 !important;
+    }
+    
+    .section-header h2, 
+    .subpage-hero h1 {
+        font-size: 1.8rem !important;
+    }
+}
