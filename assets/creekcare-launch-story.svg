@@ -143,15 +143,7 @@
             <text x="500" y="330" class="font-sans" font-size="14" fill="#94a3b8" text-anchor="middle">Book in Under 60 Secs</text>
         </g>
 
-        <!-- Call to Action button link -->
-        <g transform="translate(540, 1220)" text-anchor="middle" filter="url(#shadow)">
-            <!-- Pill Button background -->
-            <rect x="-350" y="0" width="700" height="130" rx="65" fill="url(#btnGrad)" />
-            <!-- Text -->
-            <text y="80" class="font-sans domain-text">VISIT CREEKCARE.CA</text>
-            <!-- Subtitle helper -->
-            <text y="180" class="font-sans" font-size="28" fill="#94a3b8" font-weight="600" letter-spacing="4px" text-transform="uppercase">TAP LINK IN BIO</text>
-        </g>
+
 
         <!-- Services list -->
         <g transform="translate(540, 1500)" text-anchor="middle" opacity="0.9">
