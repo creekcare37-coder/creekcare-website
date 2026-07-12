@@ -24,7 +24,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=2.1?v=1.4">
+    <link rel="stylesheet" href="styles.css?v=2.2?v=1.4">
     <!-- Leaflet CSS for Service Area Map -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <!-- Lucide Icons -->
@@ -504,8 +504,14 @@
                     <div class="estimator-sub-panel" id="panel-bin-cleaning">
                         <h4>Bin Cleaning Configuration</h4>
                         <div class="form-group">
-                            <label>Number of Bins: <span id="bin-count-val">2</span></label>
-                            <input type="range" id="bin-count" min="1" max="5" value="2" class="slider" oninput="updateBinCount(this.value)">
+                            <label>Number of Bins:<span id="bin-count-val" style="display: none;">2</span></label>
+                            <select id="bin-count" class="form-control" onchange="updateBinCount(this.value)">
+                                <option value="1">1 Bin ($20)</option>
+                                <option value="2" selected>2 Bins ($30)</option>
+                                <option value="3">3 Bins ($40)</option>
+                                <option value="4">4 Bins ($50)</option>
+                                <option value="5">5 Bins ($60)</option>
+                            </select>
                             <p class="help-text">($20 for the first bin, +$10 for each additional bin)</p>
                         </div>
                     </div>
@@ -680,6 +686,6 @@
     </script>
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <script src="main.js?v=2.1?v=1.4"></script>
+    <script src="main.js?v=2.2?v=1.4"></script>
 </body>
 </html>
