@@ -191,6 +191,16 @@ p {
     border: none;
     cursor: pointer;
     color: var(--secondary);
+    padding: 10px;
+    margin-right: -10px;
+    position: relative;
+    z-index: 1010;
+}
+
+.mobile-menu-btn i {
+    width: 28px;
+    height: 28px;
+    display: block;
 }
 
 /* Mobile Menu Overlay */
@@ -207,10 +217,14 @@ p {
     align-items: center;
     transform: translateX(100%);
     transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+    visibility: hidden;
+    pointer-events: none;
 }
 
 .mobile-menu-overlay.active {
     transform: translateX(0);
+    visibility: visible;
+    pointer-events: auto;
 }
 
 .mobile-nav {
