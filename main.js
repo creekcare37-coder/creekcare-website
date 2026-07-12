@@ -196,8 +196,24 @@ function calculateEstimate() {
 
             if (service === 'lawn-care') {
                 serviceName = 'Lawn Mowing';
-                serviceCost = lawnFrequency === 'weekly' ? 60 : 75;
-                detailText = lawnFrequency === 'weekly' ? 'Weekly (Starting at $60/cut)' : 'Bi-Weekly (Starting at $75/cut)';
+                const houseTypeEl = document.getElementById('lawn-house-type');
+                const houseType = houseTypeEl ? houseTypeEl.value : 'townhouse';
+                let baseCost = 60;
+                let label = '';
+                if (lawnFrequency === 'weekly') {
+                    label = 'Weekly';
+                    if (houseType === 'townhouse') baseCost = 60;
+                    else if (houseType === 'semi') baseCost = 70;
+                    else baseCost = 80;
+                } else {
+                    label = 'Bi-Weekly';
+                    if (houseType === 'townhouse') baseCost = 75;
+                    else if (houseType === 'semi') baseCost = 85;
+                    else baseCost = 95;
+                }
+                serviceCost = baseCost;
+                const typeLabel = houseType === 'townhouse' ? 'Town Home' : houseType === 'semi' ? 'Semi-detached' : 'Single home';
+                detailText = `${label} - ${typeLabel}`;
             } else if (service === 'gutter-cleaning') {
                 serviceName = 'Gutter Cleaning';
                 const houseTypeEl = document.getElementById('gutter-house-type');
@@ -334,9 +350,17 @@ function applyEstimateToBooking() {
 
         activeServices.forEach(service => {
             if (service === 'lawn-care') {
-                const cost = lawnFrequency === 'weekly' ? 60 : 75;
+                const houseTypeEl = document.getElementById('lawn-house-type');
+                const houseType = houseTypeEl ? houseTypeEl.value : 'townhouse';
+                let cost = 60;
+                if (lawnFrequency === 'weekly') {
+                    cost = houseType === 'townhouse' ? 60 : houseType === 'semi' ? 70 : 80;
+                } else {
+                    cost = houseType === 'townhouse' ? 75 : houseType === 'semi' ? 85 : 95;
+                }
                 const freqLabel = lawnFrequency === 'weekly' ? 'Weekly' : 'Bi-Weekly';
-                detailsMsg += `- Lawn Mowing (${freqLabel}): Starting at $${cost}/cut\n`;
+                const typeLabel = houseType === 'townhouse' ? 'Town Home' : houseType === 'semi' ? 'Semi-detached' : 'Single home';
+                detailsMsg += `- Lawn Mowing (${freqLabel} - ${typeLabel}): $${cost}/cut\n`;
                 total += cost;
             } else if (service === 'gutter-cleaning') {
                 const houseTypeEl = document.getElementById('gutter-house-type');

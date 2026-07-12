@@ -24,7 +24,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=2.5?v=1.4">
+    <link rel="stylesheet" href="styles.css?v=2.6?v=1.4">
     <!-- Leaflet CSS for Service Area Map -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <!-- Lucide Icons -->
@@ -296,19 +296,6 @@
                     </div>
                 </div>
 
-                <!-- Garage Cleanouts -->
-                <div class="service-card">
-                    <div class="service-img">
-                        <img src="assets/garage-cleanouts-blossom-park.jpg" alt="Garage cleanout and junk removal service in Blossom Park, Ottawa" />
-                        <div class="service-icon"><i data-lucide="box"></i></div>
-                    </div>
-                    <div class="service-content">
-                        <h3>Garage Cleanouts</h3>
-                        <p>Clearing clutter to make your garage organized and spacious. Reclaim your space today.</p>
-                        <a href="garage-cleanouts" class="btn btn-outline">Explore Service</a>
-                    </div>
-                </div>
-                
                 <!-- Gutter Cleaning -->
                 <div class="service-card">
                     <div class="service-img">
@@ -322,6 +309,32 @@
                     </div>
                 </div>
 
+                <!-- Gutter Inspection -->
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="assets/gutter-inspection-ottawa.jpg" alt="Professional camera pole gutter inspection service in Ottawa" />
+                        <div class="service-icon"><i data-lucide="camera"></i></div>
+                    </div>
+                    <div class="service-content">
+                        <h3>Gutter Inspection</h3>
+                        <p>We use a camera on a telescoping pole to inspect your gutters, showing you video proof of their health. Only $35!</p>
+                        <a href="gutter-inspection" class="btn btn-outline">Explore Service</a>
+                    </div>
+                </div>
+
+                <!-- Garage Cleanouts -->
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="assets/garage-cleanouts-blossom-park.jpg" alt="Garage cleanout and junk removal service in Blossom Park, Ottawa" />
+                        <div class="service-icon"><i data-lucide="box"></i></div>
+                    </div>
+                    <div class="service-content">
+                        <h3>Garage Cleanouts</h3>
+                        <p>Clearing clutter to make your garage organized and spacious. Reclaim your space today.</p>
+                        <a href="garage-cleanouts" class="btn btn-outline">Explore Service</a>
+                    </div>
+                </div>
+                
                 <!-- Tree Removal -->
                 <div class="service-card">
                     <div class="service-img">
@@ -335,7 +348,7 @@
                     </div>
                 </div>
 
-                <!-- Bin Cleaning -->
+                <!-- Trash Bin Cleaning -->
                 <div class="service-card">
                     <div class="service-img">
                         <img src="assets/trash-bin-cleaning-ottawa.jpg" alt="Trash bin and recycling bin cleaning service in Ottawa" />
@@ -358,19 +371,6 @@
                         <h3>Sod Installation</h3>
                         <p>Fresh, healthy sod installation to give your home a beautiful, green lawn instantly. Go to the pricing calculator for an estimate.</p>
                         <a href="sod-installation" class="btn btn-outline">Explore Service</a>
-                    </div>
-                </div>
-
-                <!-- Gutter Inspection -->
-                <div class="service-card">
-                    <div class="service-img">
-                        <img src="assets/gutter-inspection-ottawa.jpg" alt="Professional camera pole gutter inspection service in Ottawa" />
-                        <div class="service-icon"><i data-lucide="camera"></i></div>
-                    </div>
-                    <div class="service-content">
-                        <h3>Gutter Inspection</h3>
-                        <p>We use a camera on a telescoping pole to inspect your gutters, showing you video proof of their health. Only $35!</p>
-                        <a href="gutter-inspection" class="btn btn-outline">Explore Service</a>
                     </div>
                 </div>
                 <!-- Spring Clean Up -->
@@ -477,6 +477,13 @@
                                 </div>
                                 <span class="option-price">Starting at $100</span>
                             </div>
+                            <div class="estimator-option" data-service="gutter-inspection" onclick="toggleEstimatorOption(this)">
+                                <div class="option-header">
+                                    <i data-lucide="camera"></i>
+                                    <span>Gutter Inspection</span>
+                                </div>
+                                <span class="option-price">$35 flat</span>
+                            </div>
                             <div class="estimator-option" data-service="bin-cleaning" onclick="toggleEstimatorOption(this)">
                                 <div class="option-header">
                                     <i data-lucide="trash-2"></i>
@@ -490,13 +497,6 @@
                                     <span>Garage Cleanout</span>
                                 </div>
                                 <span class="option-price">In-Person Quote</span>
-                            </div>
-                            <div class="estimator-option" data-service="gutter-inspection" onclick="toggleEstimatorOption(this)">
-                                <div class="option-header">
-                                    <i data-lucide="camera"></i>
-                                    <span>Gutter Inspection</span>
-                                </div>
-                                <span class="option-price">$35 flat</span>
                             </div>
                             <div class="estimator-option" data-service="spring-cleanup" onclick="toggleEstimatorOption(this)">
                                 <div class="option-header">
@@ -521,11 +521,19 @@
                         <div class="form-group">
                             <label>Mowing Frequency:</label>
                             <div class="selector-pills">
-                                <span class="pill active" onclick="setLawnFrequency('weekly', this)">Weekly (Starting at $60/cut)</span>
-                                <span class="pill" onclick="setLawnFrequency('bi-weekly', this)">Bi-Weekly (Starting at $75/cut)</span>
+                                <span class="pill active" onclick="setLawnFrequency('weekly', this)">Weekly</span>
+                                <span class="pill" onclick="setLawnFrequency('bi-weekly', this)">Bi-Weekly</span>
                             </div>
-                            <p class="help-text">Note: Weekly service is highly recommended during peak summer months to maintain lawn density and health.</p>
                         </div>
+                        <div class="form-group" style="margin-top: 15px;">
+                            <label>House Type:</label>
+                            <select id="lawn-house-type" class="form-control" onchange="calculateEstimate()">
+                                <option value="townhouse" selected>Town Home</option>
+                                <option value="semi">Semi-detached</option>
+                                <option value="detached">Single home</option>
+                            </select>
+                        </div>
+                        <p class="help-text">Note: Weekly service is highly recommended during peak summer months to maintain lawn density and health.</p>
                     </div>
 
                     <!-- Gutter Cleaning Sub-options -->
@@ -757,6 +765,6 @@
     </script>
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <script src="main.js?v=2.5?v=1.4"></script>
+    <script src="main.js?v=2.6?v=1.4"></script>
 </body>
 </html>
