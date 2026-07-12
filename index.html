@@ -34,11 +34,13 @@
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "CreekCare",
-      "image": "https://creekcare.ca/assets/hero.jpg",
-      "@id": "https://creekcare.ca",
+      "description": "Affordable & reliable lawn mowing, gutter cleaning, small tree removal, bin cleaning, and sod installation by a hardworking student team in Findlay Creek & Blossom Park, Ottawa.",
       "url": "https://creekcare.ca",
-      "telephone": "343-204-7869",
+      "image": "https://creekcare.ca/assets/hero.jpg",
+      "telephone": "+1-343-204-7869",
+      "email": "creekcare37@gmail.com",
       "priceRange": "$$",
+      "paymentAccepted": ["Cash", "e-Transfer"],
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Ottawa",
@@ -105,6 +107,48 @@
       }
     }
     </script>
+
+    <!-- FAQ Page Schema for AI Search & SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Do you bring your own tools and equipment?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, we bring all of our own tools and equipment required to complete the job, including lawnmowers, trimmers, and safety gear."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What happens if it rains on my scheduled day?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "If it rains on your scheduled day, we will contact you to reschedule your service to our very next available dry day."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What payment methods do you accept?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We accept both Cash and e-Transfer for your convenience. Payment details will be provided upon completion of the service."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which areas in Ottawa do you service?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We proudly serve the Findlay Creek and Blossom Park neighborhoods in Ottawa."
+          }
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <!-- Header -->
@@ -113,8 +157,8 @@
             <a href="#" class="logo">Creek<span>Care</span></a>
             <nav class="nav-links">
                 <a href="#services">Services</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
+                <a href="about.html">About</a>
+                <a href="#book">Contact</a>
             </nav>
             <div class="nav-actions">
                 <a href="tel:343-204-7869" class="phone-link">
@@ -133,8 +177,8 @@
     <div class="mobile-menu-overlay">
         <nav class="mobile-nav">
             <a href="#services">Services</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
+            <a href="about.html">About</a>
+            <a href="#book">Contact</a>
             <a href="#book" class="btn btn-primary">Book Now</a>
         </nav>
     </div>
@@ -142,7 +186,7 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-bg">
-            <img src="assets/hero.jpg" alt="Beautifully manicured lawn" />
+            <img src="assets/hero.jpg" alt="Freshly mowed lawn in Findlay Creek, Ottawa" />
             <div class="hero-overlay"></div>
         </div>
         <div class="container hero-content">
@@ -206,78 +250,78 @@
                 <!-- Lawn Care -->
                 <div class="service-card">
                     <div class="service-img">
-                        <img src="assets/lawn.jpg" alt="Lawn Care Service" />
+                        <img src="assets/lawn-mowing-findlay-creek.jpg" alt="Lawn care and mowing service in Findlay Creek, Ottawa" />
                         <div class="service-icon"><i data-lucide="leaf"></i></div>
                     </div>
                     <div class="service-content">
                         <h3>Lawn Care</h3>
                         <p>Mowing, weed pulling, and trimming to keep your yard neat and healthy all season long.</p>
-                        <a href="#book" class="btn btn-outline">Book Service</a>
+                        <a href="lawn-care.html" class="btn btn-outline">Explore Service</a>
                     </div>
                 </div>
 
                 <!-- Garage Cleanouts -->
                 <div class="service-card">
                     <div class="service-img">
-                        <img src="assets/garage.jpg" alt="Garage Cleanout Service" />
+                        <img src="assets/garage-cleanouts-blossom-park.jpg" alt="Garage cleanout and junk removal service in Blossom Park, Ottawa" />
                         <div class="service-icon"><i data-lucide="box"></i></div>
                     </div>
                     <div class="service-content">
                         <h3>Garage Cleanouts</h3>
                         <p>Clearing clutter to make your garage organized and spacious. Reclaim your space today.</p>
-                        <a href="#book" class="btn btn-outline">Book Service</a>
+                        <a href="garage-cleanouts.html" class="btn btn-outline">Explore Service</a>
                     </div>
                 </div>
                 
                 <!-- Gutter Cleaning -->
                 <div class="service-card">
                     <div class="service-img">
-                        <img src="assets/gutters.jpg" alt="Gutter Cleaning & Inspection Service" />
+                        <img src="assets/gutter-cleaning-findlay-creek.jpg" alt="Gutter cleaning and inspection service in Findlay Creek, Ottawa" />
                         <div class="service-icon"><i data-lucide="droplets"></i></div>
                     </div>
                     <div class="service-content">
                         <h3>Gutter Cleaning & Inspection</h3>
                         <p>Keep your gutters flowing freely. Ask about a free inspection with a garage cleanout or lawn maintenance!</p>
-                        <a href="#book" class="btn btn-outline">Book Service</a>
+                        <a href="gutter-cleaning.html" class="btn btn-outline">Explore Service</a>
                     </div>
                 </div>
 
                 <!-- Tree Removal -->
                 <div class="service-card">
                     <div class="service-img">
-                        <img src="assets/tree_removal.jpg" alt="Small Tree & Stump Removal Service" />
+                        <img src="assets/tree-stump-removal-ottawa.jpg" alt="Small tree and stump removal service in Ottawa" />
                         <div class="service-icon"><i data-lucide="scissors"></i></div>
                     </div>
                     <div class="service-content">
                         <h3>Small Tree & Stump Removal</h3>
                         <p>Safe and efficient removal of small trees and stumps to clear your landscape. Inquire about pricing!</p>
-                        <a href="#book" class="btn btn-outline">Book Service</a>
+                        <a href="tree-removal.html" class="btn btn-outline">Explore Service</a>
                     </div>
                 </div>
 
                 <!-- Bin Cleaning -->
                 <div class="service-card">
                     <div class="service-img">
-                        <img src="assets/bin_cleaning.jpg" alt="Trash Bin Cleaning Service" />
+                        <img src="assets/trash-bin-cleaning-ottawa.jpg" alt="Trash bin and recycling bin cleaning service in Ottawa" />
                         <div class="service-icon"><i data-lucide="trash-2"></i></div>
                     </div>
                     <div class="service-content">
                         <h3>Trash Bin Cleaning</h3>
                         <p>Sanitizing and deodorizing your dirty garbage and compost bins. Inquire about pricing!</p>
-                        <a href="#book" class="btn btn-outline">Book Service</a>
+                        <a href="bin-cleaning.html" class="btn btn-outline">Explore Service</a>
                     </div>
                 </div>
 
                 <!-- Sod Installation -->
                 <div class="service-card">
                     <div class="service-img">
-                        <img src="assets/sod.jpg" alt="Sod Installation Service" />
+                        <img src="assets/sod-installation-findlay-creek.jpg" alt="Sod installation and lawn turf replacement in Findlay Creek, Ottawa" />
                         <div class="service-icon"><i data-lucide="grid"></i></div>
                     </div>
                     <div class="service-content">
                         <h3>Sod Installation</h3>
                         <p>Fresh, healthy sod installation to give your home a beautiful, green lawn instantly. Inquire about pricing!</p>
-                        <a href="#book" class="btn btn-outline">Book Service</a>
+                        <a href="sod-installation.html" class="btn btn-outline">Explore Service</a>
                     </div>
                 </div>
             </div>

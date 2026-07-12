@@ -21,22 +21,32 @@ document.addEventListener('DOMContentLoaded', () => {
     // Close mobile menu when a link is clicked
     mobileNavLinks.forEach(link => {
         link.addEventListener('click', () => {
-            mobileMenuOverlay.classList.remove('active');
-            const icon = mobileMenuBtn.querySelector('i');
-            icon.setAttribute('data-lucide', 'menu');
-            lucide.createIcons();
+            if (mobileMenuOverlay) {
+                mobileMenuOverlay.classList.remove('active');
+            }
+            if (mobileMenuBtn) {
+                const icon = mobileMenuBtn.querySelector('i');
+                if (icon) {
+                    icon.setAttribute('data-lucide', 'menu');
+                }
+            }
+            if (window.lucide) {
+                lucide.createIcons();
+            }
         });
     });
 
     // Navbar scroll effect
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
-            navbar.style.padding = '10px 0';
-        } else {
-            navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)';
-            navbar.style.padding = '15px 0';
+        if (navbar) {
+            if (window.scrollY > 50) {
+                navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
+                navbar.style.padding = '10px 0';
+            } else {
+                navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)';
+                navbar.style.padding = '15px 0';
+            }
         }
     });
 
