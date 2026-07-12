@@ -1151,6 +1151,10 @@ details[open] summary.faq-question i {
     color: var(--secondary);
 }
 
+.estimator-sub-panel .form-group label {
+    color: var(--secondary) !important;
+}
+
 .estimator-sub-panel .form-control {
     background-color: var(--bg-white);
     border: 1px solid rgba(0, 0, 0, 0.15);
@@ -1163,13 +1167,26 @@ details[open] summary.faq-question i {
 }
 
 .estimator-sub-panel select.form-control {
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%231e293b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-    color: var(--secondary);
+    -webkit-appearance: auto !important;
+    -moz-appearance: auto !important;
+    appearance: auto !important;
+    background-image: none !important;
+    background-color: #ffffff !important;
+    color: #1e293b !important;
+    border: 1px solid #cbd5e1 !important;
+    padding: 10px 12px !important;
+    height: 45px !important;
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    font-family: var(--font-main) !important;
+    font-size: 1rem !important;
+    border-radius: var(--radius-sm) !important;
 }
 
 .estimator-sub-panel .form-control option {
-    background-color: var(--bg-white);
-    color: var(--secondary);
+    background-color: #ffffff !important;
+    color: #1e293b !important;
 }
 
 .selector-pills {
