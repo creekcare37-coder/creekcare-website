@@ -14,3 +14,6 @@ Allow: /
 
 User-agent: ClaudeBot
 Allow: /
+
+# Link to sitemap
+Sitemap: https://creekcare.ca/sitemap.xml
