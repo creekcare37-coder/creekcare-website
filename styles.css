@@ -939,4 +939,33 @@ details[open] summary.faq-question i {
     .subpage-main-img {
         height: 250px;
     }
+    
+    /* Scale down headings for mobile */
+    h1 {
+        font-size: 2.2rem !important;
+    }
+    h2 {
+        font-size: 1.8rem !important;
+    }
+    h3 {
+        font-size: 1.4rem !important;
+    }
+    .hero h1 {
+        font-size: 2.2rem !important;
+    }
+    .hero p {
+        font-size: 1rem !important;
+        margin-bottom: 20px;
+    }
+    
+    /* Clean services grid for mobile */
+    .services-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px;
+    }
+    
+    /* Hide nav actions in header, keep clean header */
+    .nav-actions {
+        display: none !important;
+    }
 }
