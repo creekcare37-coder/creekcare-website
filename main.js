@@ -203,13 +203,13 @@ function calculateEstimate() {
                 const houseType = houseTypeEl ? houseTypeEl.value : 'townhouse';
                 if (houseType === 'townhouse') {
                     serviceCost = 100;
-                    detailText = 'Townhouse Base Rate';
+                    detailText = 'Town Home Base Rate';
                 } else if (houseType === 'semi') {
                     serviceCost = 140;
-                    detailText = 'Semi-Detached Base Rate';
+                    detailText = 'Semi-detached Base Rate';
                 } else {
                     serviceCost = 180;
-                    detailText = 'Detached House Base Rate';
+                    detailText = 'Single home Base Rate';
                 }
             } else if (service === 'bin-cleaning') {
                 serviceName = 'Bin Cleaning';
@@ -288,7 +288,8 @@ function applyEstimateToBooking() {
                 const houseTypeEl = document.getElementById('gutter-house-type');
                 const houseType = houseTypeEl ? houseTypeEl.value : 'townhouse';
                 const cost = houseType === 'townhouse' ? 100 : houseType === 'semi' ? 140 : 180;
-                detailsMsg += `- Gutter Cleaning (${houseType.charAt(0).toUpperCase() + houseType.slice(1)}): $${cost}\n`;
+                const label = houseType === 'townhouse' ? 'Town Home' : houseType === 'semi' ? 'Semi-detached' : 'Single home';
+                detailsMsg += `- Gutter Cleaning (${label}): $${cost}\n`;
                 total += cost;
             } else if (service === 'bin-cleaning') {
                 const binCountEl = document.getElementById('bin-count');
