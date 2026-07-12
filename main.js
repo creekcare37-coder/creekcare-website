@@ -231,32 +231,18 @@ function calculateEstimate() {
                 detailText = 'Camera Pole Inspection & Video validation';
             } else if (service === 'spring-cleanup') {
                 serviceName = 'Spring Clean Up';
+                serviceCost = 'Quote Needed';
                 const yardSizeEl = document.getElementById('spring-cleanup-size');
                 const yardSize = yardSizeEl ? yardSizeEl.value : 'small';
-                if (yardSize === 'small') {
-                    serviceCost = 150;
-                    detailText = 'Small Yard (Dethatch & Clean)';
-                } else if (yardSize === 'medium') {
-                    serviceCost = 250;
-                    detailText = 'Medium Yard (Dethatch & Clean)';
-                } else {
-                    serviceCost = 350;
-                    detailText = 'Large Yard (Dethatch & Clean)';
-                }
+                const sizeLabel = yardSize === 'small' ? 'Small Yard' : yardSize === 'medium' ? 'Medium Yard' : 'Large Yard';
+                detailText = `${sizeLabel} (In-person quote needed)`;
             } else if (service === 'fall-cleanup') {
                 serviceName = 'Fall Clean Up';
+                serviceCost = 'Quote Needed';
                 const yardSizeEl = document.getElementById('fall-cleanup-size');
                 const yardSize = yardSizeEl ? yardSizeEl.value : 'small';
-                if (yardSize === 'small') {
-                    serviceCost = 130;
-                    detailText = 'Small Yard (Leaves & Winter Prep)';
-                } else if (yardSize === 'medium') {
-                    serviceCost = 220;
-                    detailText = 'Medium Yard (Leaves & Winter Prep)';
-                } else {
-                    serviceCost = 310;
-                    detailText = 'Large Yard (Leaves & Winter Prep)';
-                }
+                const sizeLabel = yardSize === 'small' ? 'Small Yard' : yardSize === 'medium' ? 'Medium Yard' : 'Large Yard';
+                detailText = `${sizeLabel} (In-person quote needed)`;
             }
 
             if (typeof serviceCost === 'number') {
@@ -377,15 +363,15 @@ function applyEstimateToBooking() {
             } else if (service === 'spring-cleanup') {
                 const yardSizeEl = document.getElementById('spring-cleanup-size');
                 const yardSize = yardSizeEl ? yardSizeEl.value : 'small';
-                const cost = yardSize === 'small' ? 150 : yardSize === 'medium' ? 250 : 350;
-                detailsMsg += `- Spring Clean Up (${yardSize.charAt(0).toUpperCase() + yardSize.slice(1)} Yard): $${cost}\n`;
-                total += cost;
+                const sizeLabel = yardSize === 'small' ? 'Small Yard' : yardSize === 'medium' ? 'Medium Yard' : 'Large Yard';
+                detailsMsg += `- Spring Clean Up (${sizeLabel}): In-person quote needed\n`;
+                hasQuote = true;
             } else if (service === 'fall-cleanup') {
                 const yardSizeEl = document.getElementById('fall-cleanup-size');
                 const yardSize = yardSizeEl ? yardSizeEl.value : 'small';
-                const cost = yardSize === 'small' ? 130 : yardSize === 'medium' ? 220 : 310;
-                detailsMsg += `- Fall Clean Up (${yardSize.charAt(0).toUpperCase() + yardSize.slice(1)} Yard): $${cost}\n`;
-                total += cost;
+                const sizeLabel = yardSize === 'small' ? 'Small Yard' : yardSize === 'medium' ? 'Medium Yard' : 'Large Yard';
+                detailsMsg += `- Fall Clean Up (${sizeLabel}): In-person quote needed\n`;
+                hasQuote = true;
             }
         });
         
