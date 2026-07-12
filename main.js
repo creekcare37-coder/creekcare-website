@@ -130,6 +130,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Estimator State
 const activeServices = new Set();
+let lawnFrequency = 'weekly';
+
+function setLawnFrequency(freq, el) {
+    try {
+        lawnFrequency = freq;
+        const pills = el.parentNode.querySelectorAll('.pill');
+        pills.forEach(p => p.classList.remove('active'));
+        el.classList.add('active');
+        calculateEstimate();
+    } catch (e) {
+        console.error("Lawn frequency update error:", e);
+    }
+}
 
 function toggleEstimatorOption(el) {
     try {
@@ -182,8 +195,8 @@ function calculateEstimate() {
 
             if (service === 'lawn-care') {
                 serviceName = 'Lawn Mowing';
-                serviceCost = 60;
-                detailText = 'Weekly Schedule ($60/cut)';
+                serviceCost = lawnFrequency === 'weekly' ? 60 : 75;
+                detailText = lawnFrequency === 'weekly' ? 'Weekly Schedule ($60/cut)' : 'Bi-Weekly Schedule ($75/cut)';
             } else if (service === 'gutter-cleaning') {
                 serviceName = 'Gutter Cleaning';
                 const houseTypeEl = document.getElementById('gutter-house-type');
@@ -267,8 +280,10 @@ function applyEstimateToBooking() {
 
         activeServices.forEach(service => {
             if (service === 'lawn-care') {
-                detailsMsg += '- Lawn Mowing (Weekly): $60/cut\n';
-                total += 60;
+                const cost = lawnFrequency === 'weekly' ? 60 : 75;
+                const freqLabel = lawnFrequency === 'weekly' ? 'Weekly' : 'Bi-Weekly';
+                detailsMsg += `- Lawn Mowing (${freqLabel}): $${cost}/cut\n`;
+                total += cost;
             } else if (service === 'gutter-cleaning') {
                 const houseTypeEl = document.getElementById('gutter-house-type');
                 const houseType = houseTypeEl ? houseTypeEl.value : 'townhouse';
@@ -354,3 +369,4 @@ window.toggleEstimatorOption = toggleEstimatorOption;
 window.updateBinCount = updateBinCount;
 window.calculateEstimate = calculateEstimate;
 window.applyEstimateToBooking = applyEstimateToBooking;
+window.setLawnFrequency = setLawnFrequency;
