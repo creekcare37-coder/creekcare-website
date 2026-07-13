@@ -61,6 +61,18 @@
       <priority>0.8</priority>
    </url>
    <url>
+      <loc>https://creekcare.ca/top-soiling</loc>
+      <lastmod>2026-07-13</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+   </url>
+   <url>
+      <loc>https://creekcare.ca/other</loc>
+      <lastmod>2026-07-13</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+   </url>
+   <url>
       <loc>https://creekcare.ca/about</loc>
       <lastmod>2026-07-12</lastmod>
       <changefreq>monthly</changefreq>

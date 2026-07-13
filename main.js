@@ -266,6 +266,19 @@ function calculateEstimate() {
                 const sodSize = sodSizeEl ? sodSizeEl.value : 'small';
                 const sizeLabel = sodSize === 'small' ? 'Small Area' : sodSize === 'medium' ? 'Medium Yard' : 'Full Property';
                 detailText = `${sizeLabel} (In-person quote needed)`;
+            } else if (service === 'top-soiling') {
+                serviceName = 'Top Soiling';
+                const topSoilingSizeEl = document.getElementById('top-soiling-size');
+                const topSoilingSize = topSoilingSizeEl ? topSoilingSizeEl.value : 'small';
+                serviceCost = topSoilingSize === 'small' ? 80 : topSoilingSize === 'medium' ? 150 : 220;
+                const sizeLabel = topSoilingSize === 'small' ? 'Small Yard' : topSoilingSize === 'medium' ? 'Medium Yard' : 'Large Yard';
+                detailText = `${sizeLabel} top soil dressing`;
+            } else if (service === 'other') {
+                serviceName = 'Other / Custom Service';
+                serviceCost = 'Quote Needed';
+                const descEl = document.getElementById('other-desc');
+                const descVal = descEl ? descEl.value.trim() : '';
+                detailText = descVal ? `Custom: "${descVal}" (Quote required)` : 'Custom Service (Quote required)';
             }
 
             if (typeof serviceCost === 'number') {
@@ -347,6 +360,8 @@ function applyEstimateToBooking() {
             else if (singleService === 'spring-cleanup') bookingSelect.value = 'Spring Clean Up';
             else if (singleService === 'fall-cleanup') bookingSelect.value = 'Fall Clean Up';
             else if (singleService === 'sod-installation') bookingSelect.value = 'Sod Installation';
+            else if (singleService === 'top-soiling') bookingSelect.value = 'Top Soiling';
+            else if (singleService === 'other') bookingSelect.value = 'Other';
         } else {
             bookingSelect.value = 'Multiple Services';
         }
@@ -410,6 +425,19 @@ function applyEstimateToBooking() {
                 const sizeLabel = sodSize === 'small' ? 'Small Area' : sodSize === 'medium' ? 'Medium Yard' : 'Full Property';
                 detailsMsg += `- Sod Installation (${sizeLabel}): In-person quote needed\n`;
                 hasQuote = true;
+            } else if (service === 'top-soiling') {
+                const topSoilingSizeEl = document.getElementById('top-soiling-size');
+                const topSoilingSize = topSoilingSizeEl ? topSoilingSizeEl.value : 'small';
+                const cost = topSoilingSize === 'small' ? 80 : topSoilingSize === 'medium' ? 150 : 220;
+                const sizeLabel = topSoilingSize === 'small' ? 'Small Yard' : topSoilingSize === 'medium' ? 'Medium Yard' : 'Large Yard';
+                detailsMsg += `- Top Soiling (${sizeLabel}): $${cost}\n`;
+                total += cost;
+            } else if (service === 'other') {
+                const descEl = document.getElementById('other-desc');
+                const descVal = descEl ? descEl.value.trim() : '';
+                const descLabel = descVal ? `Custom: "${descVal}"` : 'Custom Service';
+                detailsMsg += `- Other/Custom (${descLabel}): In-person quote needed\n`;
+                hasQuote = true;
             }
         });
         
@@ -432,10 +460,10 @@ window.addEventListener('load', function() {
     try {
         const mapContainer = document.getElementById('service-map');
         if (mapContainer && window.L) {
-            // Center on Findlay Creek / Blossom Park area (Ottawa coordinates)
+            // Center on Findlay Creek, Blossom Park, Hunt Club, Greenboro area (Ottawa coordinates)
             const isMobileDevice = L.Browser.mobile || ('ontouchstart' in window);
             const map = L.map('service-map', {
-                center: [45.3316, -75.6225],
+                center: [45.3400, -75.6400],
                 zoom: 12,
                 scrollWheelZoom: false,
                 dragging: !isMobileDevice,
@@ -455,7 +483,7 @@ window.addEventListener('load', function() {
                 fillOpacity: 0.15,
                 radius: 2000 // 2 km
             }).addTo(map);
-            findlayCreek.bindPopup('<strong>Findlay Creek Service Zone</strong><br>Weekly cuts, gutters, bins, and cleanouts.');
+            findlayCreek.bindPopup('<strong>Findlay Creek Service Zone</strong><br>Lawn care, gutters, bins, cleanouts, and more.');
 
             // Blossom Park Service Zone
             const blossomPark = L.circle([45.3503, -75.6429], {
@@ -464,7 +492,34 @@ window.addEventListener('load', function() {
                 fillOpacity: 0.15,
                 radius: 2000 // 2 km
             }).addTo(map);
-            blossomPark.bindPopup('<strong>Blossom Park Service Zone</strong><br>Weekly cuts, gutters, bins, and cleanouts.');
+            blossomPark.bindPopup('<strong>Blossom Park Service Zone</strong><br>Lawn care, gutters, bins, cleanouts, and more.');
+
+            // Hunt Club Service Zone
+            const huntClub = L.circle([45.3504, -75.6881], {
+                color: '#10b981',
+                fillColor: '#10b981',
+                fillOpacity: 0.12,
+                radius: 2000 // 2 km
+            }).addTo(map);
+            huntClub.bindPopup('<strong>Hunt Club Service Zone</strong><br>Lawn care, gutters, bins, cleanouts, and more.');
+
+            // Hunt Club Park Service Zone
+            const huntClubPark = L.circle([45.3625, -75.6565], {
+                color: '#059669',
+                fillColor: '#059669',
+                fillOpacity: 0.12,
+                radius: 1500 // 1.5 km
+            }).addTo(map);
+            huntClubPark.bindPopup('<strong>Hunt Club Park Service Zone</strong><br>Lawn care, gutters, bins, cleanouts, and more.');
+
+            // Greenboro Service Zone
+            const greenboro = L.circle([45.3670, -75.6320], {
+                color: '#34d399',
+                fillColor: '#34d399',
+                fillOpacity: 0.12,
+                radius: 1500 // 1.5 km
+            }).addTo(map);
+            greenboro.bindPopup('<strong>Greenboro Service Zone</strong><br>Lawn care, gutters, bins, cleanouts, and more.');
             
             // Force Leaflet map resize layout fix
             setTimeout(function() {
