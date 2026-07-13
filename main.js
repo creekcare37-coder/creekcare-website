@@ -259,6 +259,13 @@ function calculateEstimate() {
                 const yardSize = yardSizeEl ? yardSizeEl.value : 'small';
                 const sizeLabel = yardSize === 'small' ? 'Small Yard' : yardSize === 'medium' ? 'Medium Yard' : 'Large Yard';
                 detailText = `${sizeLabel} (In-person quote needed)`;
+            } else if (service === 'sod-installation') {
+                serviceName = 'Sod Installation';
+                serviceCost = 'Quote Needed';
+                const sodSizeEl = document.getElementById('sod-size');
+                const sodSize = sodSizeEl ? sodSizeEl.value : 'small';
+                const sizeLabel = sodSize === 'small' ? 'Small Area' : sodSize === 'medium' ? 'Medium Yard' : 'Full Property';
+                detailText = `${sizeLabel} (In-person quote needed)`;
             }
 
             if (typeof serviceCost === 'number') {
@@ -339,6 +346,7 @@ function applyEstimateToBooking() {
             else if (singleService === 'gutter-inspection') bookingSelect.value = 'Gutter Inspection';
             else if (singleService === 'spring-cleanup') bookingSelect.value = 'Spring Clean Up';
             else if (singleService === 'fall-cleanup') bookingSelect.value = 'Fall Clean Up';
+            else if (singleService === 'sod-installation') bookingSelect.value = 'Sod Installation';
         } else {
             bookingSelect.value = 'Multiple Services';
         }
@@ -395,6 +403,12 @@ function applyEstimateToBooking() {
                 const yardSize = yardSizeEl ? yardSizeEl.value : 'small';
                 const sizeLabel = yardSize === 'small' ? 'Small Yard' : yardSize === 'medium' ? 'Medium Yard' : 'Large Yard';
                 detailsMsg += `- Fall Clean Up (${sizeLabel}): In-person quote needed\n`;
+                hasQuote = true;
+            } else if (service === 'sod-installation') {
+                const sodSizeEl = document.getElementById('sod-size');
+                const sodSize = sodSizeEl ? sodSizeEl.value : 'small';
+                const sizeLabel = sodSize === 'small' ? 'Small Area' : sodSize === 'medium' ? 'Medium Yard' : 'Full Property';
+                detailsMsg += `- Sod Installation (${sizeLabel}): In-person quote needed\n`;
                 hasQuote = true;
             }
         });

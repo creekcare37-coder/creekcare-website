@@ -24,7 +24,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=2.6?v=1.4">
+    <link rel="stylesheet" href="styles.css?v=2.7?v=1.4">
     <!-- Leaflet CSS for Service Area Map -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <!-- Lucide Icons -->
@@ -291,7 +291,7 @@
                     </div>
                     <div class="service-content">
                         <h3>Lawn Care</h3>
-                        <p>Mowing, weed pulling, and trimming to keep your yard neat and healthy all season long.</p>
+                        <p>Mowing, weed pulling, and trimming to keep your yard neat and healthy all season long. See pricing calculator for an estimate.</p>
                         <a href="lawn-care" class="btn btn-outline">Explore Service</a>
                     </div>
                 </div>
@@ -304,7 +304,7 @@
                     </div>
                     <div class="service-content">
                         <h3>Gutter Cleaning & Inspection</h3>
-                        <p>Keep your gutters flowing freely. Ask about a free inspection with a garage cleanout or lawn maintenance!</p>
+                        <p>Keep your gutters flowing freely. Ask about a free inspection with a garage cleanout or lawn maintenance! See pricing calculator for an estimate.</p>
                         <a href="gutter-cleaning" class="btn btn-outline">Explore Service</a>
                     </div>
                 </div>
@@ -317,7 +317,7 @@
                     </div>
                     <div class="service-content">
                         <h3>Gutter Inspection</h3>
-                        <p>We use a camera on a telescoping pole to inspect your gutters, showing you video proof of their health. Only $35!</p>
+                        <p>We use a camera on a telescoping pole to inspect your gutters, showing you video proof of their health. Only $35! See pricing calculator for an estimate.</p>
                         <a href="gutter-inspection" class="btn btn-outline">Explore Service</a>
                     </div>
                 </div>
@@ -369,7 +369,7 @@
                     </div>
                     <div class="service-content">
                         <h3>Sod Installation</h3>
-                        <p>Fresh, healthy sod installation to give your home a beautiful, green lawn instantly. Go to the pricing calculator for an estimate.</p>
+                        <p>Fresh, healthy sod installation to give your home a beautiful, green lawn instantly. In-person quote needed.</p>
                         <a href="sod-installation" class="btn btn-outline">Explore Service</a>
                     </div>
                 </div>
@@ -512,6 +512,13 @@
                                 </div>
                                 <span class="option-price">In-Person Quote</span>
                             </div>
+                            <div class="estimator-option" data-service="sod-installation" onclick="toggleEstimatorOption(this)">
+                                <div class="option-header">
+                                    <i data-lucide="grid"></i>
+                                    <span>Sod Installation</span>
+                                </div>
+                                <span class="option-price">In-Person Quote</span>
+                            </div>
                         </div>
                     </div>
 
@@ -615,6 +622,20 @@
                                 <option value="large">Large Yard (Quote Required)</option>
                             </select>
                             <p class="help-text">Includes leaf raking, seasonal pruning, and winter preparation.</p>
+                        </div>
+                    </div>
+
+                    <!-- Sod Installation Sub-options -->
+                    <div class="estimator-sub-panel" id="panel-sod-installation">
+                        <h4>Sod Installation Configuration</h4>
+                        <div class="form-group">
+                            <label>Project Scope / Yard Area:</label>
+                            <select id="sod-size" class="form-control" onchange="calculateEstimate()">
+                                <option value="small" selected>Small Area / Patching (Quote Required)</option>
+                                <option value="medium">Medium Yard (Quote Required)</option>
+                                <option value="large">Full Property Sodding (Quote Required)</option>
+                            </select>
+                            <p class="help-text">Includes soil preparation, leveling, and high-quality local sod installation.</p>
                         </div>
                     </div>
                 </div>
@@ -765,6 +786,6 @@
     </script>
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <script src="main.js?v=2.6?v=1.4"></script>
+    <script src="main.js?v=2.7?v=1.4"></script>
 </body>
 </html>
