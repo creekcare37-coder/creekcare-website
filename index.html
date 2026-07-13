@@ -24,7 +24,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=2.9?v=1.4">
+    <link rel="stylesheet" href="styles.css?v=3.0?v=1.4">
     <!-- Leaflet CSS for Service Area Map -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <!-- Lucide Icons -->
@@ -547,7 +547,7 @@
                                     <i data-lucide="shovel"></i>
                                     <span>Top Soiling</span>
                                 </div>
-                                <span class="option-price">Starting at $80</span>
+                                <span class="option-price">In-Person Quote</span>
                             </div>
                             <div class="estimator-option" data-service="other" onclick="toggleEstimatorOption(this)">
                                 <div class="option-header">
@@ -682,9 +682,9 @@
                         <div class="form-group">
                             <label>Project Scope / Area Size:</label>
                             <select id="top-soiling-size" class="form-control" onchange="calculateEstimate()">
-                                <option value="small" selected>Small Yard / Spot Dressing ($80)</option>
-                                <option value="medium">Medium Yard ($150)</option>
-                                <option value="large">Large Yard ($220)</option>
+                                <option value="small" selected>Small Yard / Spot Dressing (Quote Required)</option>
+                                <option value="medium">Medium Yard (Quote Required)</option>
+                                <option value="large">Large Yard (Quote Required)</option>
                             </select>
                             <p class="help-text">Includes spreading premium organic topsoil or loam across lawn areas or garden beds.</p>
                         </div>
@@ -848,6 +848,6 @@
     </script>
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <script src="main.js?v=2.9?v=1.4"></script>
+    <script src="main.js?v=3.0?v=1.4"></script>
 </body>
 </html>

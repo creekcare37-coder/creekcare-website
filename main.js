@@ -268,11 +268,11 @@ function calculateEstimate() {
                 detailText = `${sizeLabel} (In-person quote needed)`;
             } else if (service === 'top-soiling') {
                 serviceName = 'Top Soiling';
+                serviceCost = 'Quote Needed';
                 const topSoilingSizeEl = document.getElementById('top-soiling-size');
                 const topSoilingSize = topSoilingSizeEl ? topSoilingSizeEl.value : 'small';
-                serviceCost = topSoilingSize === 'small' ? 80 : topSoilingSize === 'medium' ? 150 : 220;
                 const sizeLabel = topSoilingSize === 'small' ? 'Small Yard' : topSoilingSize === 'medium' ? 'Medium Yard' : 'Large Yard';
-                detailText = `${sizeLabel} top soil dressing`;
+                detailText = `${sizeLabel} (In-person quote needed)`;
             } else if (service === 'other') {
                 serviceName = 'Other / Custom Service';
                 serviceCost = 'Quote Needed';
@@ -428,10 +428,9 @@ function applyEstimateToBooking() {
             } else if (service === 'top-soiling') {
                 const topSoilingSizeEl = document.getElementById('top-soiling-size');
                 const topSoilingSize = topSoilingSizeEl ? topSoilingSizeEl.value : 'small';
-                const cost = topSoilingSize === 'small' ? 80 : topSoilingSize === 'medium' ? 150 : 220;
                 const sizeLabel = topSoilingSize === 'small' ? 'Small Yard' : topSoilingSize === 'medium' ? 'Medium Yard' : 'Large Yard';
-                detailsMsg += `- Top Soiling (${sizeLabel}): $${cost}\n`;
-                total += cost;
+                detailsMsg += `- Top Soiling (${sizeLabel}): In-person quote needed\n`;
+                hasQuote = true;
             } else if (service === 'other') {
                 const descEl = document.getElementById('other-desc');
                 const descVal = descEl ? descEl.value.trim() : '';
