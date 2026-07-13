@@ -475,50 +475,14 @@ window.addEventListener('load', function() {
                 maxZoom: 19
             }).addTo(map);
 
-            // Findlay Creek Service Zone
-            const findlayCreek = L.circle([45.3129, -75.6022], {
-                color: '#2ecc71',
-                fillColor: '#2ecc71',
-                fillOpacity: 0.15,
-                radius: 2000 // 2 km
-            }).addTo(map);
-            findlayCreek.bindPopup('<strong>Findlay Creek Service Zone</strong><br>Lawn care, gutters, bins, cleanouts, and more.');
-
-            // Blossom Park Service Zone
-            const blossomPark = L.circle([45.3503, -75.6429], {
+            // Ottawa South Service Zone (Unified Circle)
+            const ottawaSouthZone = L.circle([45.3460, -75.6380], {
                 color: '#27ae60',
                 fillColor: '#27ae60',
                 fillOpacity: 0.15,
-                radius: 2000 // 2 km
+                radius: 4500 // 4.5 km
             }).addTo(map);
-            blossomPark.bindPopup('<strong>Blossom Park Service Zone</strong><br>Lawn care, gutters, bins, cleanouts, and more.');
-
-            // Hunt Club Service Zone
-            const huntClub = L.circle([45.3504, -75.6881], {
-                color: '#10b981',
-                fillColor: '#10b981',
-                fillOpacity: 0.12,
-                radius: 2000 // 2 km
-            }).addTo(map);
-            huntClub.bindPopup('<strong>Hunt Club Service Zone</strong><br>Lawn care, gutters, bins, cleanouts, and more.');
-
-            // Hunt Club Park Service Zone
-            const huntClubPark = L.circle([45.3625, -75.6565], {
-                color: '#059669',
-                fillColor: '#059669',
-                fillOpacity: 0.12,
-                radius: 1500 // 1.5 km
-            }).addTo(map);
-            huntClubPark.bindPopup('<strong>Hunt Club Park Service Zone</strong><br>Lawn care, gutters, bins, cleanouts, and more.');
-
-            // Greenboro Service Zone
-            const greenboro = L.circle([45.3670, -75.6320], {
-                color: '#34d399',
-                fillColor: '#34d399',
-                fillOpacity: 0.12,
-                radius: 1500 // 1.5 km
-            }).addTo(map);
-            greenboro.bindPopup('<strong>Greenboro Service Zone</strong><br>Lawn care, gutters, bins, cleanouts, and more.');
+            ottawaSouthZone.bindPopup('<strong>Ottawa South Service Zone</strong><br>Lawn care, gutters, bins, cleanouts, and more.');
             
             // Force Leaflet map resize layout fix
             setTimeout(function() {
