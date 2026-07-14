@@ -273,6 +273,13 @@ function calculateEstimate() {
                 const topSoilingSize = topSoilingSizeEl ? topSoilingSizeEl.value : 'small';
                 const sizeLabel = topSoilingSize === 'small' ? 'Small Yard' : topSoilingSize === 'medium' ? 'Medium Yard' : 'Large Yard';
                 detailText = `${sizeLabel} (In-person quote needed)`;
+            } else if (service === 'parking-lot-sweeping') {
+                serviceName = 'Parking Lot Sweeping';
+                serviceCost = 'Quote Needed';
+                const sweepingSizeEl = document.getElementById('sweeping-size');
+                const sweepingSize = sweepingSizeEl ? sweepingSizeEl.value : 'small';
+                const sizeLabel = sweepingSize === 'small' ? 'Small Lot' : sweepingSize === 'medium' ? 'Medium Lot' : 'Large Lot';
+                detailText = `${sizeLabel} (In-person quote needed)`;
             } else if (service === 'other') {
                 serviceName = 'Other / Custom Service';
                 serviceCost = 'Quote Needed';
@@ -361,6 +368,7 @@ function applyEstimateToBooking() {
             else if (singleService === 'fall-cleanup') bookingSelect.value = 'Fall Clean Up';
             else if (singleService === 'sod-installation') bookingSelect.value = 'Sod Installation';
             else if (singleService === 'top-soiling') bookingSelect.value = 'Top Soiling';
+            else if (singleService === 'parking-lot-sweeping') bookingSelect.value = 'Parking Lot Sweeping';
             else if (singleService === 'other') bookingSelect.value = 'Other';
         } else {
             bookingSelect.value = 'Multiple Services';
@@ -430,6 +438,12 @@ function applyEstimateToBooking() {
                 const topSoilingSize = topSoilingSizeEl ? topSoilingSizeEl.value : 'small';
                 const sizeLabel = topSoilingSize === 'small' ? 'Small Yard' : topSoilingSize === 'medium' ? 'Medium Yard' : 'Large Yard';
                 detailsMsg += `- Top Soiling (${sizeLabel}): In-person quote needed\n`;
+                hasQuote = true;
+            } else if (service === 'parking-lot-sweeping') {
+                const sweepingSizeEl = document.getElementById('sweeping-size');
+                const sweepingSize = sweepingSizeEl ? sweepingSizeEl.value : 'small';
+                const sizeLabel = sweepingSize === 'small' ? 'Small Lot' : sweepingSize === 'medium' ? 'Medium Lot' : 'Large Lot';
+                detailsMsg += `- Parking Lot Sweeping (${sizeLabel}): In-person quote needed\n`;
                 hasQuote = true;
             } else if (service === 'other') {
                 const descEl = document.getElementById('other-desc');
